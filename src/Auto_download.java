@@ -22,10 +22,6 @@
 
 import java.io.OutputStream;
 
-import org.apache.commons.net.ftp.FTP;
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
-import org.apache.commons.net.ftp.FTPReply;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -34,9 +30,7 @@ public class Auto_download
 {
 	private String Source_ = "http://www.ored.com.tw/AUTHAdmin_SJW/file_upload/";
 	private String Target_folder = "C:\\Users\\user\\Desktop\\Constract\\";
-	
-	//String server = "www.ored.com.tw/AUTHAdmin_SJW/file_upload/";
-    
+	    
 	// 
 	private OutputStream outStream_file;
     
@@ -51,14 +45,12 @@ public class Auto_download
 		
 	}
 	
-	private void Download_file(String remoteFile) throws IOException
+	private void Download_file(String remoteFile) 
 	{
 		String temp;		
 		String nxml_tar[] = remoteFile.split("/");
 		
-		temp = "pub/pmc/".concat(remoteFile);
-		//outStream_file = new FileOutputStream(current_path+"/"+TAR_folder+"/".concat(nxml_tar[3]));	
-		//client_nxml.retrieveFile(temp, outStream_nxml);		
+			
 	}
 	
 	public static void main(String args[])
