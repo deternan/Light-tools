@@ -1,3 +1,3 @@
 # Tools
 
-Some frequencly used tools 
+Some frequently used tools 
