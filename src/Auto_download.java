@@ -16,18 +16,17 @@
  * GNU General Public License for more details.
  * 
  * 
- * Last revision: January 02, 2017	11:56 PM
+ * Jar
+ * jsoup-1.10.1.jar
+ * 
+ * Last revision: January 06, 2017	10:34 PM
  */
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,38 +37,42 @@ public class Auto_download
 	private String Source_ = "http://www.ored.com.tw/AUTHAdmin_SJW/file_upload/";
 	private String Target_folder = "D:\\Constract\\";
 	    
-	// 
-	private OutputStream outStream_file;
-    // WWW
-	private int port = 80;
+	final Base64.Decoder decoder = Base64.getDecoder();	
 	
 	public Auto_download() throws Exception
-	{
-		String enc = System.getProperty("file.encoding");
-		System.out.println(enc);
+	{				
+		System.setProperty("file.encoding", "UTF-8");				
 		
-
 		String filename;
+		String encoder_str;	String UTF_8_str;
 		Document doc = Jsoup.connect(Source_).get();
-        String UTF_8_str;
+        //String UTF_8_str = "";
 		for (Element file : doc.select("a"))
         {
-            //System.out.println(count+++"	"+file.attr("href"));
-			filename = file.attr("href").toString().substring(file.attr("href").toString().lastIndexOf("/")+1, file.attr("href").toString().length());
-			UTF_8_str = new String(filename.getBytes("UTF-8"), "UTF-8"); 
+            //System.out.println(file.text());
+            filename = file.text();
+			
+            encoder_str = file.attr("href").toString().substring(file.attr("href").toString().lastIndexOf("/")+1, file.attr("href").toString().length());
+			UTF_8_str = new String(encoder_str.getBytes("UTF-8"), "UTF-8"); 
             
-            System.out.println(UTF_8_str);
-            if((UTF_8_str!=null)&&(UTF_8_str.length() >0)){
-            	Download(UTF_8_str);
+            if((filename!=null)&&(filename.length() >0)){            	            
+            	// Extension
+            	if(filename.contains(".")){
+            		Download(filename, UTF_8_str);
+            	}            	
             }            
-        }
-		
+        }		
 	}
 	
-	private void Download(String filename) throws Exception
+	private void Download(String filename, String encode_str) throws Exception
 	{		
-		System.out.println(Target_folder + filename);
-		URL url = new URL(Source_ + filename);
+		//System.out.println(Target_folder + filename);
+		//System.out.println(Target_folder + encode_str);
+		System.out.println(Source_ + filename);
+		//System.out.println(Source_ + encode_str);
+				
+		//URL url = new URL(Source_ + filename);
+		URL url = new URL(Source_ + encode_str);
 		InputStream in = url.openStream();
 		FileOutputStream fos = new FileOutputStream(new File(Target_folder + filename));				
 		
@@ -81,15 +84,7 @@ public class Auto_download
 		}
 		fos.close();
 		in.close();
-		System.out.println(filename+" File downloaded");
-		
-		
-		/*
-		URL url = new URL(Source_ + filename);		
-		InputStream in = url.openStream();
-		Files.copy(in, Paths.get(Target_folder + filename), StandardCopyOption.REPLACE_EXISTING);
-		in.close();
-		*/
+		//System.out.println(filename+" File downloaded");
 	}
 	
 	public static void main(String args[])
