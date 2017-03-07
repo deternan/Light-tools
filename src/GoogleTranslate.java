@@ -21,6 +21,9 @@ import javax.net.ssl.HttpsURLConnection;
  * version: February 23, 2017		04:11 PM
  * Last revision: March 07, 2017	05:46 PM
  * 
+ * Author : Chao-Hsuan Ke
+ * Email phelps.ke at gmail dot com
+ * 
  */
 
 /*
