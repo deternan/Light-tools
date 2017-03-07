@@ -10,14 +10,10 @@ package File;
  *  
  */
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.zip.GZIPInputStream;
 
@@ -59,12 +55,9 @@ public class Unzip_edx_Tar
 		
 		for (int i = 0; i < listOfFiles.length; i++) 
 		{
-			  if (listOfFiles[i].isFile()) {
-		        //System.out.println("File " + listOfFiles[i].getName());
- 
-				decompress(this.source_filder + listOfFiles[i].getName());
-				//System.out.println(listOfFiles[i].getName());
-				
+			  if (listOfFiles[i].isFile()) {		      
+				  decompress(this.source_filder + listOfFiles[i].getName());
+				  //System.out.println(listOfFiles[i].getName());				
 		      } else if (listOfFiles[i].isDirectory()) {
 		        //System.out.println("Directory " + listOfFiles[i].getName());
 		      }
