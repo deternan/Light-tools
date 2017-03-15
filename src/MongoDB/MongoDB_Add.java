@@ -67,12 +67,6 @@ public class MongoDB_Add
 		
         mongoClient.close();
 	}
-		
-	private void CreateCollection()
-	{
-		DB db = mongoClient.getDB(DB_collection);		
-		DBCollection school = db.createCollection("Test", null);		
-	}
 	
 	private void Add_data() throws Exception
 	{
