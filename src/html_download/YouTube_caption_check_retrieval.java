@@ -65,6 +65,9 @@ public class YouTube_caption_check_retrieval
 	
 	public static void main(String[] args) 
 	{
+		// Video id, 
+		// e.g. 6i7RcP39NB0
+		// https://www.youtube.com/watch?v=6i7RcP39NB0
 		YouTube_caption_check_retrieval cc = new YouTube_caption_check_retrieval("6i7RcP39NB0", "zh-TW");
 	}
 	
