@@ -7,8 +7,6 @@ public class BubbleSort
 		int lenD = input.length;
 		int j = 0;
 		double tmp = 0;
-		String videoid_temp = "";
-		String videourl_temp = "";
 		
 		for(int i=0; i<lenD; i++)
 		{
