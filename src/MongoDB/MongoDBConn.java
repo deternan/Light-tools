@@ -10,7 +10,7 @@ import com.mongodb.MongoClient;
  * MongoDB connection
  * 
  * version: March 09, 2017 10:06 AM
- * Last revision: March 09, 2017 10:06 AM
+ * Last revision: June 07, 2017 10:17 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -40,7 +40,7 @@ public class MongoDBConn
 	
 	private void ConnectionDB()
 	{				
-		MongoClient mongoClient = new MongoClient("localhost", port);		
+		MongoClient mongoClient = new MongoClient(host, port);		
 		List<String> databases = mongoClient.getDatabaseNames();		
 		
         for (String dbName : databases) 
