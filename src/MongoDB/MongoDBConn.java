@@ -23,7 +23,6 @@ import com.mongodb.MongoClient;
  * JAR
  * mongodb-driver-3.4.2.jar
  * mongodb-driver-core-3.4.2.jar
- * bson-3.4.2.jar
  */
 
 public class MongoDBConn  
