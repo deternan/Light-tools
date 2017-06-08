@@ -2,7 +2,7 @@
  * XML get and parser
  * 
  * version: June 08, 2017 01:07 AM
- * Last revision: June 08, 2017 08:21 PM,
+ * Last revision: June 09, 2017 01:01 AM
  * 
  * 氣象資料
  * 自動氣象站-氣象觀測資料			O-A0001-001
@@ -38,9 +38,20 @@ public class XML_parser
 	// CWB
 	private String dataid = "O-A0003-001";;
 	private String key = "";
+
+	// Tag
+		private String TEMP = "TEMP";		// 溫度
+		private String HUMD = "HUMD";		// 濕度
+		private String PRES = "PRES";		// 氣壓
+		private String _24R = "24R";		// 當日累積雨量
+		private String WDSD = "WDSD";		// 風力
+	// Input
+	private String input_location = "臺中";
+	
 	
 	public XML_parser() throws Exception
 	{
+		//this.input_location = input_location;
 		httpsendGet();
 		
 	}
@@ -72,34 +83,65 @@ public class XML_parser
 		}
 		in.close();
 
-		Parser(response.toString());
-		//print result
-		//System.out.println(response.toString());
+		Parser(response.toString());		
 	}
 	
-	private void Parser(String input_str) throws Exception
+	private void Parser(String input_xmlstr) throws Exception
 	{
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = dbf.newDocumentBuilder();
-        InputStream inputStream = new ByteArrayInputStream(input_str.getBytes());
-        Document doc = builder.parse(inputStream); //
+        InputStream inputStream = new ByteArrayInputStream(input_xmlstr.getBytes());
+        Document doc = builder.parse(inputStream);
         
-        Element root = doc.getDocumentElement(); // Element
+        Element root = doc.getDocumentElement();
         NodeList location = root.getElementsByTagName("location");
-        
-        System.out.println("location length: "+location.getLength());            
         
         for (int i=0; i<location.getLength(); i++) {
             // 
-            Element ele = (Element) location.item(i);
+        	Element ele_all = (Element) location.item(i);            
+            // location name
+        	NodeList names = ele_all.getElementsByTagName("locationName");
+        	Element ele = (Element) names.item(0);
+            Node node = ele.getFirstChild();
+            //System.out.println(node.getNodeValue());
             
             // location name
-            NodeList names = ele.getElementsByTagName("locationName");
-            Element e = (Element) names.item(0);
-            Node t = e.getFirstChild();
-            System.out.println(t.getNodeValue());
+            if(node.getNodeValue().toString().equalsIgnoreCase(input_location)){
+            	System.out.println(node.getNodeValue()); 
+            	NodeList subnames = ele_all.getElementsByTagName("weatherElement");
+            	//System.out.println(subnames.getLength());
+            	
+            	for(int j=0; j<subnames.getLength(); j++)
+            	{            		
+            		Element ele_all_ = (Element) subnames.item(j);                         
+                	NodeList names_ = ele_all_.getElementsByTagName("elementName");
+                	Element ele_ = (Element) names_.item(0);
+                    Node node_ = ele_.getFirstChild();
+                    
+                    System.out.println(node_.getNodeValue());
+                    
+                    NodeList ev = ele_all.getElementsByTagName("value");
+                    Element ev_ele = (Element) ev.item(j);
+                    Node ev_node = ev_ele.getFirstChild();
+                    if(node_.getNodeValue().toString().equalsIgnoreCase(TEMP)){
+                    	System.out.println("elementValue	"+ev_node.getNodeValue());
+                    }
+                    if(node_.getNodeValue().toString().equalsIgnoreCase(HUMD)){                    	                    	          
+                        System.out.println("elementValue	"+ev_node.getNodeValue());
+                    }
+                    if(node_.getNodeValue().toString().equalsIgnoreCase(PRES)){
+                    	System.out.println("elementValue	"+ev_node.getNodeValue());
+                    }
+                    if(node_.getNodeValue().toString().equalsIgnoreCase(_24R)){
+                    	System.out.println("elementValue	"+ev_node.getNodeValue());
+                    }
+                    if(node_.getNodeValue().toString().equalsIgnoreCase(WDSD)){
+                    	System.out.println("elementValue	"+ev_node.getNodeValue());
+                    }
+            	}
+            	
+            }
             
-//            System.out.println("locationName: "+ele.getAttribute("locationName"));            
         }
 	}
 	
