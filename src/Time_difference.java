@@ -1,10 +1,9 @@
 
 /*
  * version: June 16, 2017 02:26 PM
- * Last revision: June 14, 2017 03:35 PM
+ * Last revision: June 19, 2017 01:25 PM
  * 
  * Author : Chao-Hsuan Ke
- * 
  * 
  * Timestamp	https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html
  * 
@@ -18,8 +17,7 @@ public class Time_difference
 {
 	//private Date date_format; 	
 	private String data_now_str = "2017-06-15 18:00:36.629";
-	private String before_day_str = "2017-06-14 18:00:36.629";
-	
+	private String before_day_str = "2017-06-14 18:19:36.629";
 	
 	
 	public Time_difference() throws Exception
@@ -32,7 +30,9 @@ public class Time_difference
 		// date comparison
 		Date date_format_comparison = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(before_day_str);
 		Day_compasion(date_format_now, date_format_comparison);		
-				
+		// time different
+		DateTime_different(date_format_now, date_format_comparison);
+		
 	}
 	
 	private Calendar Add_Day(Date datestr, int day) throws Exception	
@@ -70,6 +70,27 @@ public class Time_difference
 		}else{
 			System.out.println("data_now < data_comparison");
 		}
+	}
+	
+	private void DateTime_different(Date data_now, Date data_comparison)
+	{        
+        try {
+            long diff = data_comparison.getTime() - data_now.getTime();
+            
+            long diffSeconds = diff / 1000 % 60;
+            long diffMinutes = diff / (60 * 1000) % 60;
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+            long diffDays = diff / (24 * 60 * 60 * 1000);
+
+            System.out.print(diffDays + " days, ");
+            System.out.print(diffHours + " hours, ");
+            System.out.print(diffMinutes + " minutes, ");
+            System.out.print(diffSeconds + " seconds.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 	}
 	
 	public static void main(String args[]) 
