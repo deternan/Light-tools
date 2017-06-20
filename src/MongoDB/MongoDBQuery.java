@@ -4,6 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
 public class MongoDBQuery 
@@ -11,25 +12,28 @@ public class MongoDBQuery
 	private String host = "";    
     private int port = 27017;    
     String dbName = "";
-    String colName = "";
-    String userName = "";    
-    String userPwd = "";
-	String itemName = "";
+    String colName = "";	
     
     // Query
     private DBCollection dbcollection;
     
 	public MongoDBQuery()
 	{
-		// MongoDB		
+		findquery();
+		getquery();
+	}
+
+	private void findquery()
+	{
+		// MongoDB
 		MongoClient mongoClient = new MongoClient(host, port);
-		DB db = mongoClient.getDB(dbName);		
+		DB db = mongoClient.getDB(dbName);
 		dbcollection = db.getCollection(colName);
 
-		// Search (User id)
+		// Search
 		BasicDBObject searchQuery = new BasicDBObject();
-		searchQuery.put(itemName, "");
-		// latest (timestamp)
+		searchQuery.put("", "");
+		// latest (time)
 		BasicDBObject latestQuery = new BasicDBObject();
 		latestQuery.put("timestamp", -1);
 
@@ -42,7 +46,26 @@ public class MongoDBQuery
 		cursor.close();
 		mongoClient.close();
 	}
-
+	
+	private void getquery()
+	{
+		// MongoDB
+		MongoClient mongoClient = new MongoClient(host, port);
+		DB db = mongoClient.getDB(dbName);
+		dbcollection = db.getCollection(colName);
+		
+		DBCursor cursor = dbcollection.find();
+		
+		while(cursor.hasNext())
+		{												
+			DBObject obj = cursor.next();			
+			System.out.println(obj.get("_id"));
+		}
+		
+		cursor.close();
+		mongoClient.close();
+	}
+	
 	public static void main(String[] args) 
 	{
 		MongoDBQuery MQ = new MongoDBQuery();
