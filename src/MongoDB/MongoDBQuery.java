@@ -66,6 +66,15 @@ public class MongoDBQuery
 		mongoClient.close();
 	}
 	
+	private void ISOtime_process()
+	{
+		// ISO format
+		SimpleDateFormat parserSDF = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
+		// Timestamp	2017-06-19 14:22:50.645
+		SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		
+	}
+	
 	public static void main(String[] args) 
 	{
 		MongoDBQuery MQ = new MongoDBQuery();
