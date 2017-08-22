@@ -2,7 +2,7 @@ package Text_related;
 
 public class Get_Chinese 
 {
-	private String input_str;
+	private String input_str = "LINE 從 2016 年 4 月 7 日開始提供免費「LINE BOT API 試用」帳號 (LINE BOT API Trial Account) 申請，讓任何人都可以在 LINE 的平台上開發聊天機器人的多元應用";
 	
 	public Get_Chinese()
 	{
