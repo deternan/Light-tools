@@ -15,7 +15,7 @@ import java.io.File;
 
 public class Read_folderfiles 
 {
-	private String folder_source = "C:\\Users\\Barry.Ke\\Desktop\\wikitext\\chinese\\";
+	private String folder_source = "";
 	
 	public Read_folderfiles()
 	{
