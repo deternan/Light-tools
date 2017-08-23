@@ -14,7 +14,7 @@ import org.json.JSONObject;
 /*
  * 
  * version: August 22, 2017 02:24 PM
- * Last revision: August 22, 2017 05:26 PM
+ * Last revision: August 23, 2017 01:59 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -29,8 +29,6 @@ public class Read_WikiJson_html_english
 
 	JSONObject get_json = null;
 	private String wikitext_all;
-	private Vector wikitext_vec = new Vector();
-	private String wikitext_chinese;
 	
 	public Read_WikiJson_html_english()
 	{
@@ -38,12 +36,8 @@ public class Read_WikiJson_html_english
 		readJsonFromUrl("https://en.wikipedia.org/w/api.php?action=query&redirects=&converttitles=&prop=revisions&rvprop=content&format=json&titles=" + input_title);
 		// Parser Json
 		Parser(get_json);
-		//System.out.println(get_json);
-		// Filter
-		Separation();
-		// Get Chinese words
-		wikitext_chinese = Chinese_Text_filter();
-		System.out.println(wikitext_chinese);
+				
+		System.out.println(wikitext_all);
 	}
 	
 	private void readJsonFromUrl(String url)  
@@ -100,42 +94,7 @@ public class Read_WikiJson_html_english
 			e.printStackTrace();
 		}		
 	}
-	
-	private void Separation()
-	{
-		String[] temp;
-		temp = wikitext_all.split("\\n");
-		//System.out.println(wikitext_all);		
-		//System.out.println(temp.length);
 		
-		for(int i=0; i<temp.length; i++)
-		{
-			if(temp[i].contains("。")){
-				//System.out.println(temp[i]);
-				wikitext_vec.add(temp[i]);
-			}			
-		}
-	}
-	
-	private String Chinese_Text_filter()
-	{
-		String sentence = "";
-		
-		for(int i=0; i<wikitext_vec.size(); i++)
-		{
-			for(int j=0; j<wikitext_vec.get(i).toString().length(); j++)
-			{  
-			    String test = wikitext_vec.get(i).toString().substring(j, j+1);		    
-			    if(test.matches("[\\u4E00-\\u9FA5，。]+")){
-			        //System.out.printf("\t[Info] %s -> 中文!\n", test);
-			    	sentence += test;
-			    }  		      
-			}	
-		}
-		
-		return sentence;
-	}
-	
 	public static void main(String args[]) 
 	{
 		Read_WikiJson_html_english read = new Read_WikiJson_html_english();
