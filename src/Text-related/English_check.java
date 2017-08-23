@@ -13,13 +13,17 @@ import java.nio.charset.Charset;
 
 public class English_check 
 {
-	private String input_str = "here is 臺中";
+	private String input_str = "ABC";
 	
 	public English_check()
 	{
 		boolean check;
 		
-		check = Charset.forName("US-ASCII").newEncoder().canEncode(input_str);
+		// ASCII code
+		//check = Charset.forName("US-ASCII").newEncoder().canEncode(input_str);
+		// English
+		check = input_str.matches("[a-zA-Z]+");
+		
 		System.out.println(check);
 	}
 	
