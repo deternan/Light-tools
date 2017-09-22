@@ -1,10 +1,10 @@
 import java.util.Collections;
 import java.util.Vector;
 
-public class Vector_Sort 
+public class Sort_vector 
 {
 
-	public Vector_Sort()
+	public Sort_vector()
 	{
 		Vector temp = new Vector();
 		temp.add("abc");
@@ -24,7 +24,7 @@ public class Vector_Sort
 	
 	public static void main(String args[])
 	{
-		Vector_Sort sort = new Vector_Sort();
+		Sort_vector sort = new Sort_vector();
 	}
 	
 }
