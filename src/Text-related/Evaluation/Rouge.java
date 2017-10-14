@@ -1,4 +1,4 @@
-package Evaluation;
+package Evaluation
 
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 /*
  * 
  * version: October 13, 2017 04:41 PM
- * Last revision: October 13, 2017 04:41 PM
+ * Last revision: October 15, 2017 01:41 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -59,8 +59,8 @@ public class Rouge
 		    	 summary_gold_separate.add(m.group());
 		     }		     
 		}
-		
-		System.out.println(summary_str_separate.size());
+
+//		System.out.println(summary_str_separate.size());
 		System.out.println(summary_gold_separate.size()+"	"+summary_gold);
 		
 		String ngram = "";
@@ -68,12 +68,14 @@ public class Rouge
 		for(int i=0; i<summary_gold_separate.size(); i++)
 		{
 			temp_str = "";
-			if(i<summary_gold_separate.size() - ROUGE_N){
+			if(i<summary_gold_separate.size()-ROUGE_N){
 				for(int j=0; j<ROUGE_N; j++)
 				{
-					temp_str += summary_gold_separate.get(i+j);
+					//temp_str += summary_gold_separate.get(i+j);
+					temp_str = temp_str + " "+ summary_gold_separate.get(i+j);
 				}
-				ngram = summary_gold_separate.get(i) + " " + temp_str;
+				//ngram = summary_gold_separate.get(i) + " " + temp_str;
+				ngram = temp_str.trim();
 				System.out.println(ngram);
 			}			
 		}
