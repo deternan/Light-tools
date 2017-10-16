@@ -68,7 +68,7 @@ public class Rouge
 		for(int i=0; i<summary_gold_separate.size(); i++)
 		{
 			temp_str = "";
-			if(i<summary_gold_separate.size()-ROUGE_N){
+			if(i<=summary_gold_separate.size()-ROUGE_N){
 				for(int j=0; j<ROUGE_N; j++)
 				{
 					//temp_str += summary_gold_separate.get(i+j);
