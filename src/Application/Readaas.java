@@ -1,7 +1,7 @@
 package Application;
 
 /*
- * Reas *.ass file
+ * Read *.ass file
  * 
  * version: October 20, 2017 01:41 PM
  * Last revision: October 20, 2017 01:41 PM
