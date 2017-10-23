@@ -1,6 +1,5 @@
 package Mongo;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -14,7 +13,7 @@ import com.mongodb.MongoClient;
 
 /*
 * version: June 19, 2017 05:29 PM
-* Last revision: August 29, 2017 10:30 AM
+* Last revision: October 23, 2017 04:24 PM
 * 
 * Author : Chao-Hsuan Ke
 * Institute: Delta Research Center
@@ -24,10 +23,12 @@ import com.mongodb.MongoClient;
 
 public class MongoDBQuery 
 {
-	private String host = "";    
+	private String host = "10.120.136.144";    
     private int port = 27017;    
-    String dbName = "";
-    String colName = "";
+    String dbName = "Recommendation";
+    String colName = "recommended_video";
+//    String userName = "admin";    
+//    String userPwd = "admin";
 	
     // Query
     private DBCollection dbcollection;
@@ -36,8 +37,10 @@ public class MongoDBQuery
 	{
 		findquery();
 		getquery();
-		// Query by timestamp
+		// Query by timestamp (Time gap)
 		Query_by_timestamp();
+		// Query by latest time
+		Query_by_latesttime();
 	}
 
 	private void findquery()
@@ -116,6 +119,13 @@ public class MongoDBQuery
 		mongoClient.close();
 	}
 	
+	private void Query_by_latesttime()
+	{
+		//BasicDBObject latestQuery = new BasicDBObject();
+		//latestQuery.put("timestamp", -1);
+		//DBCursor cursor = dbcollection.find(searchQuery).limit(display_limit).sort(latestQuery).limit(1);
+		//DBCursor cursor = dbcollection.find(searchQuery).limit(display_limit);
+	}
 	
 	public static void main(String[] args) 
 	{
