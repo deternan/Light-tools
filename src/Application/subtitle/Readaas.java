@@ -4,7 +4,7 @@ package Application.subtitle;
  * Read *.ass file
  * 
  * version: October 20, 2017 01:41 PM
- * Last revision: October 20, 2017 01:41 PM
+ * Last revision: October 25, 2017 10:34 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center

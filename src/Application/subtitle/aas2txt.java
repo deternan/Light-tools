@@ -25,13 +25,13 @@ import java.io.UnsupportedEncodingException;
 public class aas2txt 
 {
 	// Read files
-	private String folder_source = "C:\\Users\\Barry.Ke\\Desktop\\全部字幕\\Design for X (4)\\";
+	private String folder_source = "";
 	private String file = "";
 	private BufferedReader bfr;	
 	// subtitle string
 	private String total_str = "";
 	// Write output
-	private String output_folder = "C:\\Users\\Barry.Ke\\Desktop\\全部字幕 (txt)\\Design for X (4)\\";
+	private String output_folder = "";
 	private String output_file;
 	
 	public aas2txt() throws Exception
