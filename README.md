@@ -3,8 +3,9 @@ Each function was implemented by two language
 1. Java
 2. Python  
 
-# Tools
-Some frequently used tools 
+## Application
+ 1. subtitle
+ 2. jieba :	a tool for text segmentation
 
 ## File
 
