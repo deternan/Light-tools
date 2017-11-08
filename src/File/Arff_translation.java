@@ -15,7 +15,7 @@ import java.util.Vector;
  * Translate data to arff
  * 
  * version: November 08, 2017 11:53 AM
- * Last revision: November 08, 2017 01:28 PM
+ * Last revision: November 08, 2017 03:00 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -119,7 +119,7 @@ public class Arff_translation
 	
 	private void Generated_(String filename)
 	{
-		arff_annotation += "@RELATION " + filename + "\n\n";
+		arff_annotation += "@RELATION " + filename + "\n";
 		// Dimension
 		for(int i=0; i<dim_num; i++)
 		{
@@ -132,7 +132,7 @@ public class Arff_translation
 			class_tag_str += class_tag.get(i)+","; 
 		}
 		class_tag_str = class_tag_str.substring(0, class_tag_str.length()-1);		
-		arff_annotation += class_tag_str +"}" + "\n\n"; 
+		arff_annotation += class_tag_str +"}" + "\n"; 
 		// Data
 		arff_annotation += "@DATA" + "\n";
 		for(int i=0; i<content.size(); i++)
