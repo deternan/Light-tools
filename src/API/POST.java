@@ -13,7 +13,7 @@ import java.net.URLEncoder;
  * http POST
  * 
  * version: October 20, 2017 10:06 AM
- * Last revision: October 20, 2017 10:06 AM
+ * Last revision: November 14, 2017 11:13 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -35,7 +35,7 @@ public class POST
 {
 	// http
 	private final String USER_AGENT = "Mozilla/5.0";
-	private String API_url = "";
+	private String API_url = "http://nlp.deltaww.com/summary";
 	
 	private String input_str = "";
 	
@@ -46,9 +46,7 @@ public class POST
 	    HttpURLConnection connection = null;  
 	    try {
 	    
-	    	String urlParameters =
-			        "text=" + URLEncoder.encode(input_str, "UTF-8") +
-			        "&num=" + URLEncoder.encode("3", "UTF-8");
+	    	String urlParameters = "text=" + URLEncoder.encode(input_str, "UTF-8");
 	    	
 	      //Create connection
 	      url = new URL(API_url);
@@ -71,18 +69,28 @@ public class POST
 	      wr.flush ();
 	      wr.close ();
 
-	      //Get Response	
-	      InputStream is = connection.getInputStream();
-	      BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-	      String line;
-	      StringBuffer response = new StringBuffer(); 
-	      while((line = rd.readLine()) != null) {
-	        response.append(line);
-	        response.append('\r');
+	      // Get Response code
+	      if(connection.getResponseCode() == 200){
+	    	  // 200 OK
+	    	  InputStream is = connection.getInputStream();		     
+		      BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+		      String line;
+		      StringBuffer response = new StringBuffer(); 
+		      while((line = rd.readLine()) != null) {
+		        response.append(line);
+		        response.append('\r');
+		      }
+		      rd.close();
+		      System.out.println(response.toString());   
+	      }else if(connection.getResponseCode() == 404){
+	    	  // 404 Not Found
+	    	  
+	      }else if(connection.getResponseCode() == 500){
+	    	  // 500 Internal Server Error 
+	    	  
 	      }
-	      rd.close();
-	      System.out.println(response.toString());
-	      //return response.toString();
+	      
+	      
 
 	    } catch (Exception e) {
 
