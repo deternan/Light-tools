@@ -1,7 +1,11 @@
 package Json;
 
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+//import org.json.simple.parser.JSONParser;
 
 /*
  * JSONArray parser 
@@ -19,24 +23,34 @@ import org.json.simple.parser.JSONParser;
  * JAR
  * json-simple-1.1.1.jar
  * 
+ * java-json.jar
  */
 
 public class JSONArray_parser 
 {
-	private String input_array = "[[\"可變電容\", 0.9595925211906433], [\"電阻\", 0.9593324661254883]]";
-	
-	JSONParser parser = new JSONParser();
+	private String input_array = "[{\"word\": \"了解\", \"score\": 0.9747797250747681}, {\"word\": \"明白\", \"score\": 0.9727225303649902}]";
+//	JSONParser parser = new JSONParser();
 	
 	public JSONArray_parser() throws Exception
 	{
-		 JSONArray jsonObject = (JSONArray) parser.parse(input_array);
-		 
-		for (int i = 0; i < jsonObject.size(); i++) 
+		// json-simple version
+//		JSONArray jsonObject = (JSONArray) parser.parse(input_array);
+//		 
+//		for (int i = 0; i < jsonObject.size(); i++) 
+//		{
+//			//System.out.println(jsonObject.get(i));
+//			JSONArray names = (JSONArray) parser.parse(jsonObject.get(i).toString());
+//			System.out.println(names.get(0)+"	"+names.get(1));
+//		}
+		
+		// java-json.jar version
+		JSONArray jsonarray = new JSONArray(input_array);
+		for (int i = 0; i < jsonarray.length(); i++) 
 		{
-			//System.out.println(jsonObject.get(i));
-			JSONArray names = (JSONArray) parser.parse(jsonObject.get(i).toString());
-			System.out.println(names.get(0)+"	"+names.get(1));
+			JSONObject jsonobject = jsonarray.getJSONObject(i);
+			System.out.println(jsonobject.get("word"));
 		}
+		
 	}
 	
 	public static void main(String[] args)
