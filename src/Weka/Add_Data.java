@@ -32,21 +32,22 @@ public class Add_Data
 //		Attribute length = new Attribute("length"); 
 //		Attribute weight = new Attribute("weight"); 
 
-		
-		
-		//Attributes();
-		
-		Class();
+		//Attributes();		
+		//Class();
+		Instances();
 	}
 	
 	private void Attributes()
 	{
+		Attribute a1 = new Attribute("sepallength", 0);
+        Attribute a2 = new Attribute("REAL", 1);       
+        
+        FastVector attrs = new FastVector();
+		attrs.addElement(a1);
+		attrs.addElement(a2);
 		
-	}
-	
-	private void Instances()
-	{
-		
+		System.out.println(attrs.get(0));
+		System.out.println(attrs.get(1));
 	}
 	
 	private void Class()
@@ -61,6 +62,11 @@ public class Add_Data
 		Attribute position = new Attribute("class", my_nominal_values);
 
 		System.out.println(position);
+	}
+	
+	private void Instances()
+	{
+		
 	}
 	
 	public static void main(String[] args)
