@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 import weka.core.Attribute;
+import weka.core.DenseInstance;
 import weka.core.FastVector;
 import weka.core.Instance;
 import weka.filters.unsupervised.attribute.Add;
@@ -17,7 +18,7 @@ import weka.filters.unsupervised.attribute.Add;
  * Generated arff dataset
  * 
  * version: December 12, 2017 05:37 PM
- * Last revision: December 12, 2017 05:37 PM
+ * Last revision: December 13, 2017 10:34 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -34,21 +35,15 @@ import weka.filters.unsupervised.attribute.Add;
 public class Add_Data 
 {
 	// Parameters
-	private final int dim = 10;
-	
+	private final int dim = 10;	
 	double[] instnace_num = new double[dim];
 	
-	// output
-	private String output_folder = "C:\\Users\\Barry.Ke\\Desktop\\";
-	private String output_file = "AAA.txt";		
-	String instnace_str = "";
+	// Attritual
+	FastVector<Attribute> attrs = new FastVector();
+	// Class
 	
 	public Add_Data()
 	{
-		// Create numeric attributes "length" and "weight" 
-//		Attribute length = new Attribute("length"); 
-//		Attribute weight = new Attribute("weight"); 
-
 		Attributes();		
 		Class();
 		Instances();
@@ -56,14 +51,14 @@ public class Add_Data
 	
 	private void Attributes()
 	{
+		Attribute att;
 		
-        Attribute a1 = new Attribute("REAL", 1);       
-        
-        FastVector attrs = new FastVector();
-		attrs.addElement(a1);		
-		
-		System.out.println(attrs.get(0));
-		
+		for(int i=0; i<dim; i++)
+		{
+			att = new Attribute(String.valueOf(i), i);
+			attrs.addElement(att);
+			System.out.println(attrs.get(i));
+		}        
 	}
 	
 	private void Class()
@@ -74,10 +69,9 @@ public class Add_Data
 		my_nominal_values.addElement("second");
 		my_nominal_values.addElement("third");
 
-		// Create nominal attribute "position"
 		Attribute position = new Attribute("class", my_nominal_values);
+		System.out.println(position);
 
-		System.out.println(position.getRevision());
 	}
 	
 	private void Instances()
@@ -99,25 +93,21 @@ public class Add_Data
 			instnace_num[i] = rand.nextInt();
 			instnace_str += String.valueOf(instnace_num[i]+",");
 		}
-		
-	}
 	
-	private void output()
-	{
-		BufferedWriter writer;
-		try {
-			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output_folder + output_file), "utf-8"));
-			writer.write("QQQ");
-			writer.close();
-		} catch (UnsupportedEncodingException | FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// ------------------------------------------------------
+		// 2. create Instances object
+		// Sample
+		double[] instanceValue1 = new double[dim];
+	    instanceValue1[0] = 244;
+	    instanceValue1[1] = 59;
+	    instanceValue1[2] = 2;
+	    instanceValue1[3] = 880606923;
+
+	    DenseInstance denseInstance1 = new DenseInstance(1.0, instanceValue1);		// attribute	// value
+	    	    
+	    System.out.println(denseInstance1);			
 	}
-	
+
 	public static void main(String[] args)
 	{
 		Add_Data adddata = new Add_Data();
