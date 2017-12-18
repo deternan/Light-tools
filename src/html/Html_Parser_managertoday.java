@@ -1,4 +1,4 @@
-package html;
+
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -52,8 +52,8 @@ public class Html_Parser_managertoday
 	private JSONArray json_array = new JSONArray();
 	private JSONObject obj = new JSONObject();
 	// output text
-	private String outputpath = "C:\\Users\\Barry.Ke\\Desktop\\classification model source\\";
-	private String output_folder = "Business\\";
+	private String outputpath = "";
+	private String output_folder = "";
 	private String output_file = "";	
 	
 	public Html_Parser_managertoday() throws Exception
