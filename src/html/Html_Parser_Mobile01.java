@@ -19,7 +19,7 @@ import org.jsoup.select.Elements;
  * Web: Mobile 01
  * 
  * version: January 02, 2018 04:08 PM
- * Last revision: January 02, 2018 05:17 PM
+ * Last revision: January 02, 2018 06:49 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -34,13 +34,13 @@ import org.jsoup.select.Elements;
 
 public class Html_Parser_Mobile01 
 {
-	String url = "https://www.mobile01.com/topicdetail.php?f=232&t=5320958&p=1";	
+	String url = "https://www.mobile01.com/topicdetail.php?f=232&t=5320958&p=16";	
 	Document doc = Jsoup.connect(url).get();
 	
 	String title_text;
 	String content_text;
 	
-	
+	int page_based = 0;
 	
 	// Json
 	private JSONArray json_array = new JSONArray();
@@ -52,7 +52,10 @@ public class Html_Parser_Mobile01
 	
 	public Html_Parser_Mobile01() throws Exception
 	{		
-		doc = Jsoup.connect(url).get();		
+		doc = Jsoup.connect(url).get();
+		
+		Page_base();
+		
 //		Title();
 		
 		id_list();
@@ -60,11 +63,21 @@ public class Html_Parser_Mobile01
 //		Keywords();
 		
 		// Fileter
-//		Filter();
+		
 		// Json generation
 //		Json_generation();
-		// export
-//		Export();
+
+	}
+	
+	private void Page_base()
+	{
+		if(url.indexOf("&p=") > 0){
+			//page_based = url.lastIndexOf(ch);
+			//System.out.println(url.substring(url.indexOf("&p=") + "&p=".length(), url.length()));
+			page_based = Integer.parseInt(url.substring(url.indexOf("&p=") + "&p=".length(), url.length()));
+			
+			//System.out.println(page_based);
+		}
 	}
 	
 	private void Title()
@@ -75,42 +88,65 @@ public class Html_Parser_Mobile01
 	
 	private void id_list() throws Exception
 	{		
-		// Text		
-		//Elements allid = doc.getElementsByClass("div[class=single-post-content]");
+		int count;
+		
+		// Text				
 		Elements allclass = doc.select("div[class=single-post-content]");
 		
-		System.out.println(allclass.size());
+		//System.out.println(allclass.size());
 		for (int i=0; i<allclass.size(); i++) 
 		{
 			//System.out.println(allclass.get(i).child(0).id());
-			
-			Text(allclass.get(i).child(0).id());
+			count = ((page_based-1) * 10) + i;
+			Text(allclass.get(i).child(0).id(), count);
 		}
 		
 	}	
 
-	private void Text(String id)
+	private void Text(String id, int count)
 	{
+		String text;
+		String blockquote_text = "";
 		Elements idtext = doc.select("div[id="+id+"]");
-		System.out.println(id+"	"+idtext.text());
+		
+		// -----------------------------
+		//System.out.println(idtext);
+		Elements blockquote = idtext.select("blockquote");
+		blockquote_text = blockquote.text();		
+		//System.out.println(blockquote.text());
+		
+		text = blockquote(idtext.text(), blockquote_text);
+		// -----------------------------
+		
+		// Filter
+		text = Filter(text);
+		
+		System.out.println(count+"	"+id+"	"+text);
+		
+		// export
+		Export(String.valueOf(count)+".txt", text);
 	}
 	
-	private void Filter()
-	{		
-		// Content
-		String content_fit_str = "你可能有興趣的文章";
-		int content_fit_index;
-		if(content_text.indexOf(content_fit_str) > 0){
-			content_fit_index = content_text.indexOf(content_fit_str);
+	private String blockquote(String idtext, String blockquote_text)
+	{
+		String blockquote = "";
+		
+		blockquote = idtext.replace(blockquote_text, "");
+		
+		return blockquote;
+	}
+	
+	private String Filter(String text)
+	{
+		String text_temp = "";
+		
+		if(text.indexOf("wrote:") > 0){
+			text_temp = text.substring(text.indexOf("wrote:")+"wrote:".length(), text.length());
 		}else{
-			content_fit_str = "延伸閱讀";
-			content_fit_index = content_text.indexOf(content_fit_str);
-			content_text = content_text.substring(0, content_fit_index);
+			text_temp = text;
 		}
 		
-				
-		
-		//System.out.println(content_text);		
+		return text_temp;
 	}
 	
 	private void Json_generation() throws Exception
@@ -122,18 +158,19 @@ public class Html_Parser_Mobile01
 		//System.out.println(json_array);
 	}
 	
-	private void Export()
+	private void Export(String filename, String text)
 	{
-		if(title_text.trim().length() > 0){
-			output_file = title_text.trim() + ".json";
-		}else{
-			output_file = "No title.json";
-		}		 
+//		if(title_text.trim().length() > 0){
+//			output_file = title_text.trim() + ".txt";
+//		}else{
+//			output_file = "No title.json";
+//		}		 
+		output_file = filename + ".txt";
 		
 		BufferedWriter writer;
 		try {
 			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputpath + output_folder + output_file), "utf-8"));
-			writer.write(json_array.toString());
+			writer.write(text);
 			writer.close();
 		} catch (UnsupportedEncodingException | FileNotFoundException e) {
 			// TODO Auto-generated catch block
