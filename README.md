@@ -25,9 +25,7 @@ Auto_download
 
 BubbleSort
 
-Date_Translation
-
-GoogleTranslate
+GoogleTranslate API
 
 Random_generator
 
@@ -35,8 +33,18 @@ Regular_Expression
 
 RemoveDuplicates
 
+RemoveDuplicates_Hash_vector
+
 RemoveDuplicates_list
 
 RemoveDuplicates_vector
 
+Sort Array
+
+Sort vector
+
 Time_difference
+
+Time_difference (ISOTime)
+
+get data path
