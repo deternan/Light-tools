@@ -1,4 +1,4 @@
-
+package html;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,7 +23,7 @@ import org.jsoup.select.Elements;
  * Web: TechNews
  * 
  * version: December 13, 2017 05:25 PM
- * Last revision: December 18, 2017 06:40 PM
+ * Last revision: January 10, 2018 01:30 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -42,35 +44,43 @@ import org.jsoup.select.Elements;
 
 public class Html_Parser_TechNews 
 {
-	String url = "https://technews.tw/2017/12/18/kepler-90i-and-googel-tensorflow/";	
+	String url = "https://technews.tw/2018/01/10/silicon-perovskite-solar-cells-battery-panel/";	
 	Document doc = Jsoup.connect(url).get();
 	
 	String title_text;
 	String content_text;
 	String keywords_text;
 	Vector keywords_array = new Vector();
+	// Regular expression
+	String pattern = "<a href=.*</a>";	
+	Pattern p;
+	Matcher m;
 	
 	// Json
 	private JSONArray json_array = new JSONArray();
 	private JSONObject obj = new JSONObject();
 	// output text
-	private String outputpath = "";
-	private String output_folder = "";
+	private String outputpath = "C:\\Users\\Barry.Ke\\Desktop\\classification model source\\";
+	private String output_folder = "Software\\";
 	private String output_file;	
 	
 	public Html_Parser_TechNews() throws Exception
 	{		
 		doc = Jsoup.connect(url).get();		
+		
 		Title();
 		Text();
+		
+		Regular();
+		
 		Keywords();
 		
 		// Fileter
 		Filter();
 		// Json generation
-		Json_generation();
+//		Json_generation();
 		// export
-		Export();
+//		Export();
 	}
 	
 	private void Title()
@@ -80,9 +90,8 @@ public class Html_Parser_TechNews
 	}
 	
 	private void Text() throws Exception
-	{		
-		// Text
-		//  TechNews
+	{				
+		// TechNews
 		Elements myin = doc.getElementsByClass("indent");
 		
 		content_text = myin.text().toString();
@@ -101,11 +110,31 @@ public class Html_Parser_TechNews
 	
 	private void Filter()
 	{		
-		// Content			
+		// Content
 		String content_fit_str = "你可能有興趣的文章";
-		int content_fit_index = content_text.indexOf(content_fit_str);		
-		content_text = content_text.substring(0, content_fit_index);
+		int content_fit_index;
+		if(content_text.indexOf(content_fit_str) > 0){
+			content_fit_index = content_text.indexOf(content_fit_str);
+		}else{
+			content_fit_str = "延伸閱讀";
+			content_fit_index = content_text.indexOf(content_fit_str);
+			content_text = content_text.substring(0, content_fit_index);
+		}
+		
 		//System.out.println(content_text);		
+	}
+	
+	private void Regular()
+	{		
+		p = Pattern.compile(pattern);
+        m = p.matcher(content_text);
+        String replace_str = "";
+        while (m.find()) 
+        {
+            //System.out.println(m.group());
+        	replace_str = m.group();
+        }
+        content_text = content_text.replace(replace_str, "");
 	}
 	
 	private void Json_generation() throws Exception
