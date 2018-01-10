@@ -44,7 +44,7 @@ import org.jsoup.select.Elements;
 
 public class Html_Parser_TechNews 
 {
-	String url = "https://technews.tw/2018/01/10/silicon-perovskite-solar-cells-battery-panel/";	
+	String url = "https://finance.technews.tw/2018/01/10/boj-japan-yen/";	
 	Document doc = Jsoup.connect(url).get();
 	
 	String title_text;
@@ -92,9 +92,15 @@ public class Html_Parser_TechNews
 	private void Text() throws Exception
 	{				
 		// TechNews
-		Elements myin = doc.getElementsByClass("indent");
-		
+		Elements myin = doc.getElementsByClass("indent");		
 		content_text = myin.text().toString();
+		
+		//Elements pp = doc.select("p");		
+		Elements pp = myin.select("p");
+		for (Element pp_str : pp)
+		{
+			System.out.println(pp_str.text());			
+		}
 		//System.out.println(content_text);		
 	}
 	
