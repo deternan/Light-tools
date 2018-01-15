@@ -1,11 +1,11 @@
 package Text_related.Lucene;
 
 /*
- *  Chinese Words check
+ *  Lucene Index
  * 
  *	Version: January 15, 2018 02:14 PM
  * 	Last revision: January 15, 2018 02:14 PM
- * 
+ * 	
  */
 
 /*
