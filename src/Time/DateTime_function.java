@@ -14,7 +14,7 @@ import org.apache.lucene.document.DateTools.Resolution;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: February 26, 2018 04:51 PM
+ * Last revision: February 26, 2018 05:19 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -24,6 +24,8 @@ import org.apache.lucene.document.DateTools.Resolution;
 
 public class DateTime_function 
 {
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+	
 	Pattern p;
 	Matcher m;
 	
@@ -41,6 +43,9 @@ public class DateTime_function
 		ArrayList<String> day_array;
 		day_array = Date_separation("2018-02-18");
 		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
+		
+		// Today
+		Today();
 	}
 	
 	private String Time_to_String(String input)
@@ -92,7 +97,7 @@ public class DateTime_function
 		myCal.set(Calendar.DAY_OF_MONTH, day);		
 		myCal.getTime();
 		
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+		//DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 		myCal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 		String startDate = "";
 		String endDate = "";
@@ -101,6 +106,13 @@ public class DateTime_function
 		endDate = df.format(myCal.getTime());
 		System.out.println("Start Date = " + startDate);
 		System.out.println("End Date = " + endDate);
+	}
+	
+	private void Today()
+	{
+		Date today = Calendar.getInstance().getTime();
+		String today_str = df.format(today.getTime());
+		System.out.println(today_str);
 	}
 	
 	public static void main(String[] args)
