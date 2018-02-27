@@ -5,7 +5,7 @@ package Lucene;
  * based on Lucene version: 7.0 
  * 
  * version: January 24 20, 2018 04:03 PM
- * Last revision: February 23, 2018 06:54 PM
+ * Last revision: February 27, 2018 10:55 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -27,6 +27,7 @@ import java.nio.file.Paths;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.document.DoublePoint;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
@@ -45,6 +46,7 @@ public class Lucene_Search
 	private String indexFilePath = "D:\\Eclipse\\Lucene\\Index\\eTube_Content\\";
 	String FIELD_CONTENTS = "title";
 	String FIELD_TIME = "time";
+	String FIELD_DURATION = "duration";
 	String queryStr = "中型PLC";
 	
 	int Max_receive = 100;
@@ -72,9 +74,9 @@ public class Lucene_Search
 		Query item_query = new TermRangeQuery(FIELD_TIME, new BytesRef("20170601090900000"), new BytesRef("20170610055319000"), true, true);
 		querybuilder.add(item_query, Occur.MUST);
 		
-		
-		//ScoreDoc[] SDs = isearcher.search(querybuilder.build(), Max_receive).scoreDocs;
-		//System.out.println(SDs.length);
+		// --------------------------------------------------------------------------  Range query 		
+		Query doublequery = DoublePoint.newRangeQuery(FIELD_DURATION, 0, 300);
+		querybuilder.add(doublequery, Occur.MUST);
 		
 		// --------------------------------------------------------------------------  Basic (single) query			
 		QueryParser parser = new QueryParser(FIELD_CONTENTS, analyzer);
