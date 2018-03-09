@@ -1,4 +1,4 @@
-package MongoDB;
+package Mongo;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
-/**
+/*
  * MongoDB Add data
  * 
  * version: March 15, 2017 02:31 PM
- * Last revision: March 15, 2017 02:31 PM
+ * Last revision: March 09, 2018 10:51 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -24,7 +24,7 @@ import com.mongodb.MongoClient;
  * 
  */
 
-/**
+/*
  * JAR
  * mongodb-driver-3.4.2.jar
  * mongodb-driver-core-3.4.2.jar
@@ -35,15 +35,15 @@ public class MongoDB_Add
 {	
     private String host = "localhost";    
     private int port = 27017;    
-    String dbName = "Recommendation";
-    String userName = "admin";    
-    String userPwd = "p@ssw0rd";           
+    String dbName = "";
+    //String userName = "";    
+    //String userPwd = "";           
 	
     private MongoClient mongoClient;
     private DB db;
     private DBCollection collection;
-    	// MongoDB
-    	private String DB_collection = "Recommendation";
+    // MongoDB
+    private String collectionName = "";
     
     // 
     private JSONArray array = new JSONArray();
@@ -62,7 +62,7 @@ public class MongoDB_Add
 		// Create Collection
 		
 		// Add data to collection
-		collection = db.getCollection(dbName);
+		collection = db.getCollection(collectionName);
 		Add_data();
 		
         mongoClient.close();
