@@ -2,7 +2,7 @@ package Mongo;
 
 /*
 * version: April 18, 2018 11:24 AM
-* Last revision: April 18, 2018 11:24 AM
+* Last revision: April 18, 2018 11:34 AM
 * 
 * Author : Chao-Hsuan Ke
 * Institute: Delta Research Center
@@ -34,6 +34,7 @@ public class MongoDB_Allcollection
         	System.out.println(collectionName);
         }
 		
+		mongoClient.close();
 	}
 	
 	public static void main(String[] args) 
