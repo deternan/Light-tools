@@ -29,4 +29,9 @@ public class Json_Parser
 		bfr.close();
 	}
 	
+	public static void main(String args[]) throws Exception
+	{
+		Json_Parser JP = new Json_Parser();
+	}
+	
 }
