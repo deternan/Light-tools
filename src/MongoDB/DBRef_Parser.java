@@ -4,7 +4,7 @@ package Mongo;
  * DBRef_Parser 
  * 
  * version: January 25, 2018 04:09 PM
- * Last revision: January 25, 2018 04:09 PM
+ * Last revision: May 01, 2018 11:03 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -23,32 +23,32 @@ import com.mongodb.MongoClient;
 public class DBRef_Parser 
 {
 	String host = "";
-	String port = "";
+	int port = 27017;
 	String dbName = "";
 	String colName = "";
+	
 	MongoClient mongoClient = new MongoClient(host);
 	DB db = mongoClient.getDB(dbName);		
 	DBCollection dbcollection = db.getCollection(colName);
 	
-	String field_str = "";
+	String field_str = "user";
 	
 	public DBRef_Parser()
 	{
 		// MongoDB
 		BasicDBObject Query = new BasicDBObject();
 		DBCursor cursor = dbcollection.find(Query);
-					
+		
 		while(cursor.hasNext())
 		{
-			DBObject obj = cursor.next();
-			
-			Object id = obj;
-			  if (obj instanceof DBRef) {
-			    DBRef ref=(DBRef)obj;
-			    id = ref.getId();
-			    System.out.println(field_str);
-			  }
-			
+			DBObject obj = cursor.next();			
+			Object id = obj.get(field_str);
+			String id_str;
+			if (id instanceof DBRef) {				
+			   DBRef ref=(DBRef)id;
+			   id = ref.getId();
+			   System.out.println(id);
+			 }			
 		}		
 	}
 	
