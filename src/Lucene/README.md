@@ -23,18 +23,28 @@ version: [Apache Lucene 7.2.1](https://lucene.apache.org/)
 
 ###### 文字
 	String text_field = "TextFied";
-	String input_str = "文字在這裡輸入";
+	String input_str = {Text};
 	doc.add(new TextField(text_field, input_str, Field.Store.YES));
 
 <https://lucene.apache.org/core/7_2_1/core/org/apache/lucene/document/TextField.html>
 
 ###### 數值
-	String numericalField = "NumField";
-	int numerical = 123;
-	doc.add(new StoredField(numericalField, numerical));
+	
+	String viewCount_field = "ViewCount";
+	int viewcount = {numerical};
+	doc.add(new StoredField(viewCount_field, viewcount));
+	doc.add(new SortedNumericDocValuesField(viewCount_field, viewcount));
 
 <https://lucene.apache.org/core/7_2_1/core/index.html?org/apache/lucene/document/StoredField.html>
 
 
-####建立排序資料
+####建立可進行排序資料	
+###### 數值
 
+	String duration_field = "duration";
+	double duration_val = 100.0;
+	doc.add(new DoublePoint(duration_field, duration_val));
+
+	
+
+### Query
