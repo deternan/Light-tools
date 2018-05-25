@@ -1,16 +1,10 @@
 package MySQL;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.util.Calendar;
-
-
 /*
  * data insert
  * 
  * version: April 30, 2018 09:06 PM
- * Last revision: April 30, 2018 09:06 PM
+ * Last revision: May 25, 2018 07:57 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -18,17 +12,31 @@ import java.util.Calendar;
  * 
  */
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Calendar;
+
+
 public class Data_Insert 
 {
-	String admin_name = "";
-	String admin_pass = "";
-
+	String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	String serverName = "localhost";
+    String portNumber = "3306";
+    String mydatabase = serverName + ":" + portNumber;
+    String url = "jdbc:mysql://" + mydatabase + "/";
+    String admin_name = "";
+   	String admin_pass = "";
+    
+   	String DBname = "";
+	String tablename = "";
+   	
 	public Data_Insert() throws Exception
 	{
-		String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	    String myUrl = "jdbc:mysql://localhost:3306/javatest";
+		url = url + DBname + "." + tablename;
+	    
 	    Class.forName(JDBC_DRIVER);
-	    Connection conn = DriverManager.getConnection(myUrl, admin_name, admin_pass);
+	    Connection conn = DriverManager.getConnection(url, admin_name, admin_pass);
 	 
 	    // create a sql date object so we can use it in our INSERT statement
 	     Calendar calendar = Calendar.getInstance();
