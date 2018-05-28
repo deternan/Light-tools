@@ -4,7 +4,7 @@ package MySQL;
  * data insert
  * 
  * version: April 30, 2018 09:06 PM
- * Last revision: May 25, 2018 07:57 PM
+ * Last revision: May 28, 2018 10:09 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -21,7 +21,7 @@ import java.util.Calendar;
 public class Data_Insert 
 {
 	String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	String serverName = "localhost";
+	String serverName = "localhost"; 	
     String portNumber = "3306";
     String mydatabase = serverName + ":" + portNumber;
     String url = "jdbc:mysql://" + mydatabase + "/";
@@ -32,9 +32,9 @@ public class Data_Insert
 	String tablename = "";
    	
 	public Data_Insert() throws Exception
-	{
-		url = url + DBname + "." + tablename;
-	    
+	{		
+		url = url + DBname;
+		
 	    Class.forName(JDBC_DRIVER);
 	    Connection conn = DriverManager.getConnection(url, admin_name, admin_pass);
 	 
@@ -42,7 +42,7 @@ public class Data_Insert
 	     Calendar calendar = Calendar.getInstance();
 	     java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
 	    // the mysql insert statement
-	      String query = " insert into users (name1, name2, date_created, is_admin, num_points)"+ " values (?, ?, ?, ?, ?)";
+	      String query = " insert into "+ tablename +" (name1, name2, date_created, is_admin, num_points)"+ " values (?, ?, ?, ?, ?)";
 	      
 	   // create the mysql insert preparedstatement
 	      PreparedStatement preparedStmt = conn.prepareStatement(query);
