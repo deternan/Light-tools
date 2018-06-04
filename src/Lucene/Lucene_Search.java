@@ -5,7 +5,7 @@ package Lucene;
  * based on Lucene version: 7.0 
  * 
  * version: January 24 20, 2018 04:03 PM
- * Last revision: February 27, 2018 10:55 AM
+ * Last revision: June 04, 2018 02:41 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -29,8 +29,10 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.DoublePoint;
 import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.BooleanQuery;
+import org.apache.lucene.search.FuzzyQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
@@ -43,11 +45,11 @@ import org.apache.lucene.util.BytesRef;
 
 public class Lucene_Search 
 {
-	private String indexFilePath = "D:\\Eclipse\\Lucene\\Index\\eTube_Content\\";
-	String FIELD_CONTENTS = "title";
-	String FIELD_TIME = "time";
-	String FIELD_DURATION = "duration";
-	String queryStr = "中型PLC";
+	private String indexFilePath = "";
+	String FIELD_CONTENTS = "";
+	String FIELD_TIME = "";
+	String FIELD_DURATION = "";
+	String queryStr = "";
 	
 	int Max_receive = 100;
 	
@@ -71,6 +73,7 @@ public class Lucene_Search
 		//query.add(new TermQuery(new Term("type", type)), Occur.MUST);
 		querybuilder.add(queryParser.parse(queryStr), Occur.MUST);
 		
+		// --------------------------------------------------------------------------  Testing (time)
 		Query item_query = new TermRangeQuery(FIELD_TIME, new BytesRef("20170601090900000"), new BytesRef("20170610055319000"), true, true);
 		querybuilder.add(item_query, Occur.MUST);
 		
@@ -83,6 +86,12 @@ public class Lucene_Search
 		//parser.setDefaultOperator(QueryParser.OR_OPERATOR);
 		Query query = parser.parse(queryStr);				
 		ScoreDoc[] SDs = isearcher.search(query, Max_receive).scoreDocs;
+		
+		// --------------------------------------------------------------------------  Fuzzy query
+		int fuzziness = 2;
+		Query fuzzyquery = new FuzzyQuery(new Term(FIELD_CONTENTS, queryStr), fuzziness);
+		ScoreDoc[] F_SDs = isearcher.search(fuzzyquery, Max_receive).scoreDocs;
+		
 		
 		//System.out.println(SDs.length);
 		
