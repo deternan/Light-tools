@@ -6,25 +6,21 @@ import java.util.regex.Pattern;
 /*
  * 
  * version: June 01, 2018 05:54 PM
- * Last revision: June 02, 2018 01:35 PM
+ * Last revision: June 02, 2018 01:39 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
 
-public class RegularExpression_Number 
+public class RegularExpression_DOUBLENumber 
 {
-	String regex = "[0-9]+";
+	String regex = "[0-9]+\\.?[0-9]+";
 	Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
 	
-	public RegularExpression_Number()
+	public RegularExpression_DOUBLENumber()
 	{		
-		String data = "1234aa567";
+		String data = "12.45aa69.7";
 		
-		// True/false
-		System.out.println(data.matches(regex));
 		// Parsing
 		Matcher matcher = pattern.matcher(data);        
         while(matcher.find())
@@ -35,7 +31,7 @@ public class RegularExpression_Number
 	
 	public static void main (String args[])
 	{
-		RegularExpression_Number RE_num = new RegularExpression_Number();
+		RegularExpression_DOUBLENumber RE_num = new RegularExpression_DOUBLENumber();
 	}
 	
 }
