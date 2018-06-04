@@ -1,4 +1,4 @@
-Each function was implemented by two language 
+Each function was implemented by both programming languages 
 
 1. Java
 2. Python  
@@ -12,6 +12,11 @@ Each function was implemented by two language
 ## html_download
 
 ## Json
+
+## Lucene
+	- Lucene_Index_count
+	- Lucene_Index_Delete
+	- Lucene_Search
 
 ## MongoDB
 
