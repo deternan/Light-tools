@@ -48,3 +48,11 @@ version: [Apache Lucene 7.2.1](https://lucene.apache.org/)
 	
 
 ### Query
+
+#### single query
+
+
+#### multi query
+
+
+#### fuzzy query
