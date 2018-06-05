@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /*
  * 
  * version: June 01, 2018 05:54 PM
- * Last revision: June 02, 2018 01:39 PM
+ * Last revision: June 05, 2018 07:27 PM
  * 
  * Author : Chao-Hsuan Ke
  * 
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class RegularExpression_DOUBLENumber 
 {
-	String regex = "[0-9]+\\.?[0-9]+";
+	String regex = "([0-9]+\\.?[0-9]+)";
 	Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
 	
 	public RegularExpression_DOUBLENumber()
