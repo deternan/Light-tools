@@ -8,8 +8,7 @@ public class Read_text
 	private String folder = "";
 	private String file = "";
 	
-	private BufferedReader bfr;
-	private StringBuffer sb = new StringBuffer();
+	private BufferedReader bfr;	
 	
 	public Read_text() throws Exception
 	{
@@ -19,11 +18,13 @@ public class Read_text
 		
 		while((Line = bfr.readLine())!=null)
 		{
-			sb.append(Line+"\n");
+			//sb.append(Line+"\n");			
 		}
 		fr.close();
 		bfr.close();
 	}
+	
+	
 	
 	public static void main(String[] args)
 	{
