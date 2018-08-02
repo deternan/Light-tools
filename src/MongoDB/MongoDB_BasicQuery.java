@@ -37,7 +37,7 @@ public class MongoDB_BasicQuery
 		// latest (time)
 		BasicDBObject query = new BasicDBObject();		
 		dbcollection = db.getCollection(colName);				
-		DBCursor cursor = dbcollection.find(query);
+		DBCursor cursor = dbcollection.find(query).limit(1);
 				
 		// ObjectId
 		BasicDBObject basicquery = new BasicDBObject();
