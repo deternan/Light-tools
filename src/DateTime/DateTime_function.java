@@ -1,7 +1,10 @@
 package DateTime;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,7 +17,7 @@ import org.apache.lucene.document.DateTools.Resolution;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: February 26, 2018 05:19 PM
+ * Last revision: September 18, 2018 02:17 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -25,19 +28,21 @@ import org.apache.lucene.document.DateTools.Resolution;
 public class DateTime_function 
 {
 	DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-	
-	Pattern p;
-	Matcher m;
+	private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy";		// Thu Nov 30 16:34:55 CST 2017	
+	private Pattern p;
+	private Matcher m;
 	
 	// Week days
-	String week_start;
+	private String week_start;
 	
-	public DateTime_function()
+	private String data_spec_str = "星期五 十二月 01 12:17:04 TST 2017";		
+	
+	public DateTime_function() throws Exception
 	{
 		// time to string 
 			// example :  2018-02		
 		String date_str = Time_to_String("2018-02");
-		System.out.println(date_str);
+		//System.out.println(date_str);
 						
 		//Week_Days(2018,02,21);
 		ArrayList<String> day_array;
@@ -46,6 +51,9 @@ public class DateTime_function
 		
 		// Today
 		Today();
+		
+		// Date Parser		
+		ISODateParser();
 	}
 	
 	private String Time_to_String(String input)
@@ -115,9 +123,21 @@ public class DateTime_function
 		System.out.println(today_str);
 	}
 	
+	private void ISODateParser() throws Exception
+	{		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(isotime_pattern, Locale.TAIWAN);
+		LocalDate dateTime = LocalDate.parse(data_spec_str, formatter);
+		System.out.println(dateTime);		
+	}
+	
 	public static void main(String[] args)
 	{
-		DateTime_function df = new DateTime_function();
+		try {
+			DateTime_function df = new DateTime_function();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
