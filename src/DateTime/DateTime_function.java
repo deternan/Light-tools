@@ -1,7 +1,16 @@
 package DateTime;
 
+/*
+ * version: February 22, 2018 06:23 PM
+ * Last revision: September 18, 2018 03:57 PM
+ * 
+ * Author : Chao-Hsuan Ke
+ * Institute: Delta Research Center
+ * Company : Delta Electronics Inc. (Taiwan)
+ * 
+ */
+
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,25 +24,19 @@ import java.util.regex.Pattern;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.DateTools.Resolution;
 
-/*
- * version: February 22, 2018 06:23 PM
- * Last revision: September 18, 2018 02:17 AM
- * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
- * 
- */
-
 public class DateTime_function 
 {
 	DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-	private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy";		// Thu Nov 30 16:34:55 CST 2017	
+	// Pattern
+	private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy";		// Thu Nov 30 16:34:55 CST 2017
+	private String basic_pattern = "yyyy-MM-dd";
+	
 	private Pattern p;
 	private Matcher m;
 	
 	// Week days
-	private String week_start;
+	LocalDate WeekstartDate;
+	LocalDate WeekendDate;
 	
 	private String data_spec_str = "星期五 十二月 01 12:17:04 TST 2017";		
 	
@@ -41,19 +44,26 @@ public class DateTime_function
 	{
 		// time to string 
 			// example :  2018-02		
-		String date_str = Time_to_String("2018-02");
+		String date_str = Time_to_String("2018-09");
 		//System.out.println(date_str);
 						
 		//Week_Days(2018,02,21);
 		ArrayList<String> day_array;
-		day_array = Date_separation("2018-02-18");
+		day_array = Date_separation("2018-09-01");
 		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
 		
 		// Today
-		Today();
+//		Today();
 		
 		// Date Parser		
-		ISODateParser();
+//		ISODateParser();
+		
+		// Date comparison
+		String today_temp = "2018-09-09";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(basic_pattern, Locale.TAIWAN);
+		LocalDate dateNow = LocalDate.parse(today_temp, formatter);
+		System.out.println(dateNow);
+		DayInWeek_check(dateNow, WeekstartDate, WeekendDate);
 	}
 	
 	private String Time_to_String(String input)
@@ -106,14 +116,17 @@ public class DateTime_function
 		myCal.getTime();
 		
 		//DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-		myCal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-		String startDate = "";
-		String endDate = "";
-		startDate = df.format(myCal.getTime());
+		myCal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);		
+		String WeekstartDate_str = df.format(myCal.getTime());
 		myCal.add(Calendar.DATE, 6);
-		endDate = df.format(myCal.getTime());
-		System.out.println("Start Date = " + startDate);
-		System.out.println("End Date = " + endDate);
+		String WeekendDate_str = df.format(myCal.getTime());
+		System.out.println("Start Date = " + WeekstartDate_str);
+		System.out.println("End Date = " + WeekendDate_str);		
+		
+		// Transfer
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(basic_pattern, Locale.TAIWAN);
+		WeekstartDate = LocalDate.parse(WeekstartDate_str, formatter);
+		WeekendDate = LocalDate.parse(WeekendDate_str, formatter);
 	}
 	
 	private void Today()
@@ -128,6 +141,16 @@ public class DateTime_function
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(isotime_pattern, Locale.TAIWAN);
 		LocalDate dateTime = LocalDate.parse(data_spec_str, formatter);
 		System.out.println(dateTime);		
+	}
+	
+	private void DayInWeek_check(LocalDate dateNow, LocalDate weekStart, LocalDate weekEnd) throws Exception
+	{		
+		
+		if((dateNow.isAfter(weekStart)) && (dateNow.isBefore(weekEnd))){
+			System.out.println("This week");
+		}else{
+			System.out.println("out of this week");
+		}
 	}
 	
 	public static void main(String[] args)
