@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: September 18, 2018 03:57 PM
+ * Last revision: September 19, 2018 03:49 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -38,7 +38,8 @@ public class DateTime_function
 	LocalDate WeekstartDate;
 	LocalDate WeekendDate;
 	
-	private String data_spec_str = "星期五 十二月 01 12:17:04 TST 2017";		
+	//private String data_spec_str = "星期五 十二月 01 12:17:04 TST 2017";
+	private String data_spec_str = "Tue Jul 24 14:38:50 CST 2018";
 	
 	public DateTime_function() throws Exception
 	{
@@ -53,10 +54,10 @@ public class DateTime_function
 		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
 		
 		// Today
-//		Today();
+		Today();
 		
 		// Date Parser		
-//		ISODateParser();
+		ISODateParser();
 		
 		// Date comparison
 		String today_temp = "2018-09-09";
@@ -138,9 +139,19 @@ public class DateTime_function
 	
 	private void ISODateParser() throws Exception
 	{		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(isotime_pattern, Locale.TAIWAN);
+		boolean chinesecheck;
+		chinesecheck = isChinese(data_spec_str);
+		//System.out.println(check);
+		DateTimeFormatter formatter;
+		if(chinesecheck == true) {
+			formatter = DateTimeFormatter.ofPattern(isotime_pattern, Locale.TAIWAN);
+		}else {
+			formatter = DateTimeFormatter.ofPattern(isotime_pattern, Locale.ENGLISH);
+		}		
+		
 		LocalDate dateTime = LocalDate.parse(data_spec_str, formatter);
-		System.out.println(dateTime);		
+		System.out.println(dateTime);
+		
 	}
 	
 	private void DayInWeek_check(LocalDate dateNow, LocalDate weekStart, LocalDate weekEnd) throws Exception
@@ -151,6 +162,18 @@ public class DateTime_function
 		}else{
 			System.out.println("out of this week");
 		}
+	}
+	
+	private boolean isChinese(String con)
+	{
+		for (int i = 0; i < con.substring(0, 3).length(); i++) {
+			if (!Pattern.compile("[\u4e00-\u9fa5]").matcher(
+					String.valueOf(con.charAt(i))).find()) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 	
 	public static void main(String[] args)
