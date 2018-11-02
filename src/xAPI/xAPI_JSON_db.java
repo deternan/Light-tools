@@ -4,7 +4,7 @@ package xAPI;
  * xAPI parser
  * 
  * version: December 08, 2017 01:58 PM
- * Last revision: November 02, 2018 07:06 PM
+ * Last revision: November 02, 2018 08:26 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -12,11 +12,8 @@ package xAPI;
  * 
  */
 
-import java.io.FileReader;
 import java.util.Iterator;
 import java.util.Map;
-
-import org.json.simple.parser.JSONParser;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -30,12 +27,14 @@ import org.json.*;
 
 public class xAPI_JSON_db
 {
-	private String host = "";
+	private String host = "";    
     private int port = ;    
     String dbName = "";
     String colName = "";    
 	
     private static String actor_Field = "actor";
+    private static String verb_Field = "verb";
+    private static String context_Field = "context";
     private static String time_Field = "stored";
     
 	// Common parameters
@@ -54,8 +53,9 @@ public class xAPI_JSON_db
 	String verb;
 	// Object
 	
-	// Content
-	String con_videoId;
+	// Context	
+	private String eventCategory;
+	private String timestamp;
 	
 	public xAPI_JSON_db() throws Exception
 	{
@@ -72,30 +72,34 @@ public class xAPI_JSON_db
 		System.out.println(cursor.count());
 		while (cursor.hasNext()) 
 		{
+			name = "";			
+			verb = "";
+			eventCategory = "";
+			
 			DBObject obj = cursor.next();
 			
-			// Actor
-			//Actor(obj.get(actor_Field).toString());
+			// Actor			
 			Actor(obj);
-			//System.out.println(obj.get("_id")+"	"+obj.get(time_Field));
+			// Verb 
+			Verb(obj);
+			//
+			Object();
+			// Context
+			Context(obj);
+			
+			timestamp = obj.get(time_Field).toString();
+			
+			System.out.println(name+"	"+verb+"	"+eventCategory+"	"+timestamp);
 		}
 		cursor.close();
 		mongoClient.close();
-		
-		
-//      Actor();
-//      Verb();
-//      Object();
- //       Context();
-        
-        
+                
 	}
 	
 	private void Actor(Object object) throws JSONException 
 	{
-		// getting actor
-		// getting address
-		Map actor_map = ((Map) ((BasicBSONObject) object).get("actor"));
+		// getting actor		
+		Map actor_map = ((Map) ((BasicBSONObject) object).get(actor_Field));
 		// Map actor_map = ((Map)jo.get("actor"));
 		// iterating address Map
 		Iterator<Map.Entry> itr1 = actor_map.entrySet().iterator();
@@ -111,28 +115,26 @@ public class xAPI_JSON_db
 
 		// name (Actor)
 		name = (String) actor_map.get("name");
-		System.out.println(name);
+		//System.out.println(name);
 	}
 	
-	private void Verb() throws Exception
+	private void Verb(Object object) throws Exception
 	{
 		 // Verb
-//        Map verb_map = ((Map)jo.get("verb"));
-//        Iterator<Map.Entry> itr2 = verb_map.entrySet().iterator();
-//        while (itr2.hasNext()){
-//            Map.Entry pair = itr2.next();            
-//            
-//            if(pair.getKey().toString().equalsIgnoreCase("display")){            	
-//            	//System.out.println(pair.getKey() + " : " + pair.getValue());
-//            	
-//            	JSONObject jjj = (JSONObject) new JSONParser().parse(pair.getValue().toString());            	
-//            	jjj.putAll((Map) pair.getValue());
-//            	verb = jjj.get("en-US").toString();
-//            	System.out.println(verb);
-//            }else{
-//            	
-//            }            
-//        }
+		Map verb_map = ((Map) ((BasicBSONObject) object).get(verb_Field));
+        Iterator<Map.Entry> itr = verb_map.entrySet().iterator();
+        while (itr.hasNext()){
+            Map.Entry pair = itr.next();            
+            
+            if(pair.getKey().toString().equalsIgnoreCase("display")){            	
+            	            	
+            	JSONObject jsonObject = new JSONObject(pair.getValue().toString());            	
+            	//System.out.println(jsonObject.get("en-US"));
+            	verb = jsonObject.get("en-US").toString();            	
+            }else{
+            	
+            }            
+        }
 	}
 	
 	private void Object()
@@ -140,8 +142,24 @@ public class xAPI_JSON_db
 		
 	}
 	
-//	private void Context() throws Exception
-//	{
+	private void Context(Object object) throws Exception
+	{
+		Map context_map = ((Map) ((BasicBSONObject) object).get(context_Field));
+        Iterator<Map.Entry> itr = context_map.entrySet().iterator();
+        while (itr.hasNext()){
+        	Map.Entry pair = itr.next();
+        	
+        	if(pair.getKey().toString().equalsIgnoreCase("extensions")){
+        		JSONObject jsonObject = new JSONObject(pair.getValue().toString());            	
+            	//System.out.println(jsonObject);
+        		
+        		if(jsonObject.has("eventCategory")) {
+        			eventCategory = jsonObject.getString("eventCategory");
+        		}
+        		
+        	}
+        }
+		
 //		JSONObject jObject = new JSONObject(obj.toString());
 //		//System.out.println(jObject_context.get("context"));
 //		JSONObject jObject_context = new JSONObject(jObject.get("context").toString());
@@ -154,9 +172,9 @@ public class xAPI_JSON_db
 //		JSONObject jObject_extensions = new JSONObject(jObject_context.get("extensions").toString());
 //		
 //		System.out.println(jObject_extensions.get(title_1));		
-//		//System.out.println(jObject_extensions.get("startVideoTimePoint"));
-//
-//	}
+		//System.out.println(jObject_extensions.get("startVideoTimePoint"));
+
+	}
 	
 	public static void main(String[] args) throws Exception 
     {        
