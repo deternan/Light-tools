@@ -69,10 +69,10 @@ public class DateTime_function
 		// Week of this Year 
 //		WeekNoofYear();
 		// Week range date
-//		WeekRange(3);
+		WeekRange(3);
 		// Month of this year
-		WeekNoofYear();
-		MonthRanbge(6);
+//		WeekNoofYear();
+//		MonthRange(6);
 	}
 	
 	private String Time_to_String(String input)
@@ -201,16 +201,34 @@ public class DateTime_function
 		cal_Week_End.set(Calendar.DAY_OF_WEEK, +7);
 		Date date_format_Week_End = cal_Week_End.getTime();
 		System.out.println("Week End: "+date_format_Week_End);
-		
-		
+				
 		
 		// new Calendar
 		//Calendar calNew = Calendar.getInstance();		
-		Calendar calNew = cal_Week_Start;
-		calNew.set(Calendar.WEEK_OF_YEAR, week_index-1);
-		//System.out.println("Past week of year is : " + calNew.get(Calendar.WEEK_OF_YEAR));
-		Date date_format_new = calNew.getTime(); 
-		System.out.println(date_format_new);
+//		Calendar calNew = cal_Week_Start;
+//		calNew.set(Calendar.WEEK_OF_YEAR, week_index-1);
+//		//System.out.println("Past week of year is : " + calNew.get(Calendar.WEEK_OF_YEAR));
+//		Date date_format_new = calNew.getTime(); 
+//		System.out.println(date_format_new);
+		
+		
+		Calendar Newcal_Week_Start = cal_Week_Start;
+
+		for (int i = 0; i < range; i++) 
+		{
+			Newcal_Week_Start.set(Calendar.WEEK_OF_YEAR, week_index - i);
+			Newcal_Week_Start.set(Calendar.DAY_OF_WEEK, -DAY_OF_WEEK);
+			Date Newdate_format_Week_Start = Newcal_Week_Start.getTime();
+			Newdate_format_Week_Start = Set_Time_Zero(Newdate_format_Week_Start);
+
+			Calendar Newcal_Week_End = cal_Week_Start;
+			Newcal_Week_End.set(Calendar.DAY_OF_WEEK, +7);
+			Date Newdate_format_Week_End = Newcal_Week_End.getTime();
+			//Newdate_format_Week_End = Set_Time_Zero(Newdate_format_Week_End);
+			Newdate_format_Week_End = Set_Time_End(Newdate_format_Week_End);
+
+			System.out.println(Newdate_format_Week_Start+"	"+Newdate_format_Week_End);
+		}
 		
 	}
 	
@@ -223,17 +241,17 @@ public class DateTime_function
 		System.out.println(month);
 	}
 	
-	private void MonthRanbge(int range)
+	private void MonthRange(int range)
 	{											
 		// This Month Start day
 		Calendar cal = Calendar.getInstance();
 		int DAY_OF_MONTH = cal.get(Calendar.DAY_OF_MONTH);
+		
 		cal.add(Calendar.DAY_OF_MONTH, -DAY_OF_MONTH+1);
 		Date Newdate_format_month_Start = cal.getTime();
 		Newdate_format_month_Start = Set_Time_Zero(Newdate_format_month_Start); 
 		System.out.println(Newdate_format_month_Start);
-		
-		
+				
 		//System.out.println(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		int totalday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 		
@@ -242,7 +260,36 @@ public class DateTime_function
 		calNew.add(Calendar.DAY_OF_MONTH, totalday);
 		Date Newdate_format_month_End = calNew.getTime();
 		Newdate_format_month_End = Set_Time_Zero(Newdate_format_month_End);
-		System.out.println(Newdate_format_month_End);		
+		System.out.println(Newdate_format_month_End);
+		System.out.println("------------------------------------------");
+		
+		Calendar calRange = cal;
+		Calendar calAdd = Calendar.getInstance();
+		
+		for(int i=1; i<=range; i++)
+		{
+			// Month Start day
+			calRange.add(calRange.MONTH, -1);
+			Date Newdate_month_Start = calRange.getTime();
+			Newdate_month_Start = Set_Time_Zero(Newdate_month_Start);
+			//System.out.println(Newdate_month_Start);
+			
+			//totalday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+			totalday = calRange.getActualMaximum(calRange.DAY_OF_MONTH);
+			
+			//System.out.println(i+"	"+Newdate_month_Start+"	"+totalday);
+			
+			// Month End day
+			calAdd = calRange;
+			calAdd.set(calRange.DAY_OF_MONTH, totalday);
+			
+			//calAdd.add(calRange.DAY_OF_MONTH, totalday);
+			Date Newdate_month_End = calAdd.getTime();
+			Newdate_month_End = Set_Time_End(Newdate_month_End);
+			
+			System.out.println(Newdate_month_Start+"	"+Newdate_month_End+"	"+totalday);
+			
+		}
 	}
 	
 	private Date Set_Time_Zero(Date inputdate)
@@ -256,6 +303,18 @@ public class DateTime_function
          
          return cal.getTime(); 
     }
+	
+	private Date Set_Time_End(Date inputdate)
+	{
+		Calendar cal = Calendar.getInstance();  
+        cal.setTime(inputdate);
+        cal.set(Calendar.HOUR_OF_DAY, 23);  
+        cal.set(Calendar.MINUTE, 59);  
+        cal.set(Calendar.SECOND, 59);  
+        cal.set(Calendar.MILLISECOND, 999);  
+        
+        return cal.getTime();
+	}
 	
 	private boolean isChinese(String con)
 	{
