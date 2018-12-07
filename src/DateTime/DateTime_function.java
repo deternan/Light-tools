@@ -69,10 +69,10 @@ public class DateTime_function
 		// Week of this Year 
 //		WeekNoofYear();
 		// Week range date
-		WeekRange(3);
+//		WeekRange(3);
 		// Month of this year
 //		WeekNoofYear();
-//		MonthRange(6);
+		MonthRange(6);
 	}
 	
 	private String Time_to_String(String input)
@@ -246,38 +246,29 @@ public class DateTime_function
 		// This Month Start day
 		Calendar cal = Calendar.getInstance();
 		int DAY_OF_MONTH = cal.get(Calendar.DAY_OF_MONTH);
-		
+		cal.add(Calendar.MONTH, 1);
 		cal.add(Calendar.DAY_OF_MONTH, -DAY_OF_MONTH+1);
 		Date Newdate_format_month_Start = cal.getTime();
 		Newdate_format_month_Start = Set_Time_Zero(Newdate_format_month_Start); 
-		System.out.println(Newdate_format_month_Start);
-				
-		//System.out.println(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+
 		int totalday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-		
-		// This Month End day
-		Calendar calNew = cal;
-		calNew.add(Calendar.DAY_OF_MONTH, totalday);
-		Date Newdate_format_month_End = calNew.getTime();
-		Newdate_format_month_End = Set_Time_Zero(Newdate_format_month_End);
-		System.out.println(Newdate_format_month_End);
-		System.out.println("------------------------------------------");
-		
+				
 		Calendar calRange = cal;
 		Calendar calAdd = Calendar.getInstance();
 		
-		for(int i=1; i<=range; i++)
+		for(int i=0; i<=range; i++)
 		{
 			// Month Start day
 			calRange.add(calRange.MONTH, -1);
+			
+			DAY_OF_MONTH = cal.get(Calendar.DAY_OF_MONTH);		
+			calRange.add(Calendar.DAY_OF_MONTH, -DAY_OF_MONTH+1);
+			
 			Date Newdate_month_Start = calRange.getTime();
 			Newdate_month_Start = Set_Time_Zero(Newdate_month_Start);
 			//System.out.println(Newdate_month_Start);
-			
-			//totalday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+						
 			totalday = calRange.getActualMaximum(calRange.DAY_OF_MONTH);
-			
-			//System.out.println(i+"	"+Newdate_month_Start+"	"+totalday);
 			
 			// Month End day
 			calAdd = calRange;
@@ -287,8 +278,7 @@ public class DateTime_function
 			Date Newdate_month_End = calAdd.getTime();
 			Newdate_month_End = Set_Time_End(Newdate_month_End);
 			
-			System.out.println(Newdate_month_Start+"	"+Newdate_month_End+"	"+totalday);
-			
+			System.out.println(Newdate_month_Start+"	"+Newdate_month_End+"	"+totalday);			
 		}
 	}
 	
