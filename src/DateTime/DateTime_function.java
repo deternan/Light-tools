@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: December 07, 2018 01:07 PM
+ * Last revision: December 07, 2018 02:03 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -186,10 +186,28 @@ public class DateTime_function
 		System.out.println("Current week of year is : " + cal.get(Calendar.WEEK_OF_YEAR));
 		week_index = cal.get(Calendar.WEEK_OF_YEAR);
 		
+		// This Week Start day
+		int DAY_OF_WEEK = cal.get(Calendar.DAY_OF_WEEK);
+		Calendar cal_Week_Start = Calendar.getInstance();
+		cal_Week_Start.set(Calendar.DAY_OF_WEEK, -DAY_OF_WEEK);
+		Date date_format_Week_Start = cal_Week_Start.getTime();
+		System.out.println("Week Start: "+date_format_Week_Start);
+		// This Week End day
+		Calendar cal_Week_End = cal_Week_Start;
+		cal_Week_End.set(Calendar.DAY_OF_WEEK, +7);
+		Date date_format_Week_End = cal_Week_End.getTime();
+		System.out.println("Week End: "+date_format_Week_End);
+		
+		
+		
 		// new Calendar
-		Calendar calNew = Calendar.getInstance();		
+		//Calendar calNew = Calendar.getInstance();		
+		Calendar calNew = cal_Week_Start;
 		calNew.set(Calendar.WEEK_OF_YEAR, week_index-1);
-		System.out.println("Past week of year is : " + calNew.get(Calendar.WEEK_OF_YEAR));
+		//System.out.println("Past week of year is : " + calNew.get(Calendar.WEEK_OF_YEAR));
+		Date date_format_new = calNew.getTime(); 
+		System.out.println(date_format_new);
+		
 	}
 	
 	private boolean isChinese(String con)
