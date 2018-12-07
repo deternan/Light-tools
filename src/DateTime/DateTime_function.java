@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: December 07, 2018 11:30 AM
+ * Last revision: December 07, 2018 01:07 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -49,9 +49,9 @@ public class DateTime_function
 		//System.out.println(date_str);
 						
 		//Week Days Range(2018,02,21);
-		ArrayList<String> day_array;
-		day_array = Date_separation("2018-09-01");
-		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
+//		ArrayList<String> day_array;
+//		day_array = Date_separation("2018-09-01");
+//		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
 		
 		// Today
 //		Today();
@@ -67,7 +67,9 @@ public class DateTime_function
 //		DayInWeek_check(dateNow, WeekstartDate, WeekendDate);
 		
 		// Week of this Year & Month
-		WeekNoofYearMonth();
+//		WeekNoofYearMonth();
+		// Week range date
+		WeekRange(3);
 	}
 	
 	private String Time_to_String(String input)
@@ -175,6 +177,19 @@ public class DateTime_function
 		System.out.println("Current week of year is : " + cal.get(Calendar.WEEK_OF_YEAR));
 		cal.add(Calendar.WEEK_OF_MONTH, 1);
 		System.out.println("date after one year : " + (cal.get(Calendar.MONTH) + 1)+ "-"+ cal.get(Calendar.DATE)+ "-"+ cal.get(Calendar.YEAR));
+	}
+	
+	private void WeekRange(int range)
+	{
+		int week_index; 
+		Calendar cal = Calendar.getInstance();		
+		System.out.println("Current week of year is : " + cal.get(Calendar.WEEK_OF_YEAR));
+		week_index = cal.get(Calendar.WEEK_OF_YEAR);
+		
+		// new Calendar
+		Calendar calNew = Calendar.getInstance();		
+		calNew.set(Calendar.WEEK_OF_YEAR, week_index-1);
+		System.out.println("Past week of year is : " + calNew.get(Calendar.WEEK_OF_YEAR));
 	}
 	
 	private boolean isChinese(String con)
