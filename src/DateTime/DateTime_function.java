@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: December 07, 2018 02:03 PM
+ * Last revision: December 07, 2018 04:38 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -66,10 +66,13 @@ public class DateTime_function
 //		System.out.println(dateNow);
 //		DayInWeek_check(dateNow, WeekstartDate, WeekendDate);
 		
-		// Week of this Year & Month
-//		WeekNoofYearMonth();
+		// Week of this Year 
+//		WeekNoofYear();
 		// Week range date
-		WeekRange(3);
+//		WeekRange(3);
+		// Month of this year
+		WeekNoofYear();
+		MonthRanbge(6);
 	}
 	
 	private String Time_to_String(String input)
@@ -169,15 +172,16 @@ public class DateTime_function
 		}
 	}
 	
-	private void WeekNoofYearMonth()
+	private void WeekNoofYear()
 	{
 		// Today		
 		Calendar cal = Calendar.getInstance();
 		System.out.println("Current week of month is : " + cal.get(Calendar.WEEK_OF_MONTH));
 		System.out.println("Current week of year is : " + cal.get(Calendar.WEEK_OF_YEAR));
 		cal.add(Calendar.WEEK_OF_MONTH, 1);
-		System.out.println("date after one year : " + (cal.get(Calendar.MONTH) + 1)+ "-"+ cal.get(Calendar.DATE)+ "-"+ cal.get(Calendar.YEAR));
-	}
+		System.out.println("date after one year : " + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE) + "-"
+				+ cal.get(Calendar.YEAR));
+	}	
 	
 	private void WeekRange(int range)
 	{
@@ -209,6 +213,49 @@ public class DateTime_function
 		System.out.println(date_format_new);
 		
 	}
+	
+	private void MonthNoofYear()
+	{
+		// Today		
+		Calendar cal = Calendar.getInstance();
+		int month = cal.get(Calendar.MONTH) + 1;
+		// System.out.println("Current month of year is : " + cal.get(Calendar.MONTH));
+		System.out.println(month);
+	}
+	
+	private void MonthRanbge(int range)
+	{											
+		// This Month Start day
+		Calendar cal = Calendar.getInstance();
+		int DAY_OF_MONTH = cal.get(Calendar.DAY_OF_MONTH);
+		cal.add(Calendar.DAY_OF_MONTH, -DAY_OF_MONTH+1);
+		Date Newdate_format_month_Start = cal.getTime();
+		Newdate_format_month_Start = Set_Time_Zero(Newdate_format_month_Start); 
+		System.out.println(Newdate_format_month_Start);
+		
+		
+		//System.out.println(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		int totalday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		
+		// This Month End day
+		Calendar calNew = cal;
+		calNew.add(Calendar.DAY_OF_MONTH, totalday);
+		Date Newdate_format_month_End = calNew.getTime();
+		Newdate_format_month_End = Set_Time_Zero(Newdate_format_month_End);
+		System.out.println(Newdate_format_month_End);		
+	}
+	
+	private Date Set_Time_Zero(Date inputdate)
+    {
+    	 Calendar cal = Calendar.getInstance();  
+         cal.setTime(inputdate);
+         cal.set(Calendar.HOUR_OF_DAY, 0);  
+         cal.set(Calendar.MINUTE, 0);  
+         cal.set(Calendar.SECOND, 0);  
+         cal.set(Calendar.MILLISECOND, 0);  
+         
+         return cal.getTime(); 
+    }
 	
 	private boolean isChinese(String con)
 	{
