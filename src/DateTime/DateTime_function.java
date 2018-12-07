@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: September 19, 2018 03:49 PM
+ * Last revision: December 07, 2018 11:30 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -48,23 +48,26 @@ public class DateTime_function
 		String date_str = Time_to_String("2018-09");
 		//System.out.println(date_str);
 						
-		//Week_Days(2018,02,21);
+		//Week Days Range(2018,02,21);
 		ArrayList<String> day_array;
 		day_array = Date_separation("2018-09-01");
 		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
 		
 		// Today
-		Today();
+//		Today();
+//		
+//		// Date Parser		
+//		ISODateParser();
+//		
+//		// Date comparison
+//		String today_temp = "2018-09-09";
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(basic_pattern, Locale.TAIWAN);
+//		LocalDate dateNow = LocalDate.parse(today_temp, formatter);
+//		System.out.println(dateNow);
+//		DayInWeek_check(dateNow, WeekstartDate, WeekendDate);
 		
-		// Date Parser		
-		ISODateParser();
-		
-		// Date comparison
-		String today_temp = "2018-09-09";
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(basic_pattern, Locale.TAIWAN);
-		LocalDate dateNow = LocalDate.parse(today_temp, formatter);
-		System.out.println(dateNow);
-		DayInWeek_check(dateNow, WeekstartDate, WeekendDate);
+		// Week of this Year & Month
+		WeekNoofYearMonth();
 	}
 	
 	private String Time_to_String(String input)
@@ -162,6 +165,16 @@ public class DateTime_function
 		}else{
 			System.out.println("out of this week");
 		}
+	}
+	
+	private void WeekNoofYearMonth()
+	{
+		// Today		
+		Calendar cal = Calendar.getInstance();
+		System.out.println("Current week of month is : " + cal.get(Calendar.WEEK_OF_MONTH));
+		System.out.println("Current week of year is : " + cal.get(Calendar.WEEK_OF_YEAR));
+		cal.add(Calendar.WEEK_OF_MONTH, 1);
+		System.out.println("date after one year : " + (cal.get(Calendar.MONTH) + 1)+ "-"+ cal.get(Calendar.DATE)+ "-"+ cal.get(Calendar.YEAR));
 	}
 	
 	private boolean isChinese(String con)
