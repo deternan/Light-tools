@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: December 07, 2018 04:38 PM
+ * Last revision: December 10, 2018 04:59 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -69,10 +69,10 @@ public class DateTime_function
 		// Week of this Year 
 //		WeekNoofYear();
 		// Week range date
-//		WeekRange(3);
+		WeekRange(3);
 		// Month of this year
 //		WeekNoofYear();
-		MonthRange(6);
+//		MonthRange(6);
 	}
 	
 	private String Time_to_String(String input)
@@ -193,7 +193,7 @@ public class DateTime_function
 		// This Week Start day
 		int DAY_OF_WEEK = cal.get(Calendar.DAY_OF_WEEK);
 		Calendar cal_Week_Start = Calendar.getInstance();
-		cal_Week_Start.set(Calendar.DAY_OF_WEEK, -DAY_OF_WEEK);
+		cal_Week_Start.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
 		Date date_format_Week_Start = cal_Week_Start.getTime();
 		System.out.println("Week Start: "+date_format_Week_Start);
 		// This Week End day
@@ -214,10 +214,10 @@ public class DateTime_function
 		
 		Calendar Newcal_Week_Start = cal_Week_Start;
 
-		for (int i = 0; i < range; i++) 
+		for (int i = 0; i <= range; i++) 
 		{
 			Newcal_Week_Start.set(Calendar.WEEK_OF_YEAR, week_index - i);
-			Newcal_Week_Start.set(Calendar.DAY_OF_WEEK, -DAY_OF_WEEK);
+			Newcal_Week_Start.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
 			Date Newdate_format_Week_Start = Newcal_Week_Start.getTime();
 			Newdate_format_Week_Start = Set_Time_Zero(Newdate_format_Week_Start);
 
