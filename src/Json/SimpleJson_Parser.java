@@ -1,7 +1,5 @@
 package Json;
 
-import org.json.simple.JSONObject;
-
 /*
  * Json Parser 
  * 
@@ -14,6 +12,7 @@ import org.json.simple.JSONObject;
  * 
  */
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
