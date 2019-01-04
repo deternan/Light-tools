@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: December 10, 2018 04:59 PM
+ * Last revision: January 04, 10:08 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -69,7 +69,7 @@ public class DateTime_function
 		// Week of this Year 
 //		WeekNoofYear();
 		// Week range date
-		WeekRange(3);
+		WeekRange(10);
 		// Month of this year
 //		WeekNoofYear();
 //		MonthRange(6);
@@ -190,6 +190,7 @@ public class DateTime_function
 		System.out.println("Current week of year is : " + cal.get(Calendar.WEEK_OF_YEAR));
 		week_index = cal.get(Calendar.WEEK_OF_YEAR);
 		
+		
 		// This Week Start day
 		int DAY_OF_WEEK = cal.get(Calendar.DAY_OF_WEEK);
 		Calendar cal_Week_Start = Calendar.getInstance();
@@ -202,7 +203,8 @@ public class DateTime_function
 		Date date_format_Week_End = cal_Week_End.getTime();
 		System.out.println("Week End: "+date_format_Week_End);
 				
-		
+		//System.out.println(cal.get(Calendar.YEAR));
+		//System.out.println(cal.getWeeksInWeekYear());
 		// new Calendar
 		//Calendar calNew = Calendar.getInstance();		
 //		Calendar calNew = cal_Week_Start;
@@ -216,18 +218,31 @@ public class DateTime_function
 
 		for (int i = 0; i <= range; i++) 
 		{
+			if((week_index-i)<0) {
+				//cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) -1);
+				Newcal_Week_Start.set(Calendar.YEAR, cal.get(Calendar.YEAR) -1);
+				week_index = Newcal_Week_Start.getWeeksInWeekYear() + 1;
+				//System.out.println(week_index-i+"	"+cal.getTime());
+			}else {
+				//week_index = Newcal_Week_Start.get(Newcal_Week_Start.WEEK_OF_YEAR);
+				
+				//System.out.println(week_index-i+"	"+cal.getTime());
+			}
+			
+			//System.out.println(week_index-i);
 			Newcal_Week_Start.set(Calendar.WEEK_OF_YEAR, week_index - i);
 			Newcal_Week_Start.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
 			Date Newdate_format_Week_Start = Newcal_Week_Start.getTime();
 			Newdate_format_Week_Start = Set_Time_Zero(Newdate_format_Week_Start);
 
 			Calendar Newcal_Week_End = cal_Week_Start;
+			//Newcal_Week_End.set(Calendar.WEEK_OF_YEAR, cal_Week_Start.YEAR);
 			Newcal_Week_End.set(Calendar.DAY_OF_WEEK, +7);
 			Date Newdate_format_Week_End = Newcal_Week_End.getTime();
 			//Newdate_format_Week_End = Set_Time_Zero(Newdate_format_Week_End);
 			Newdate_format_Week_End = Set_Time_End(Newdate_format_Week_End);
 
-			System.out.println(Newdate_format_Week_Start+"	"+Newdate_format_Week_End);
+			System.out.println((week_index-i)+"	"+Newdate_format_Week_Start+"	"+Newdate_format_Week_End);
 		}
 		
 	}
