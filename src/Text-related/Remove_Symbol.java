@@ -4,7 +4,7 @@ package Text_related;
  * Remove Symbol
  * 
  * version: January 23, 2018 03:34 PM
- * Last revision: January 23, 2018 03:34 PM
+ * Last revision: January 10, 20189 02:02 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -19,7 +19,7 @@ public class Remove_Symbol
 	public Remove_Symbol()
 	{
 		//String str = input_str.replaceAll("(?i)[^a-zA-Z0-9\u4E00-\u9FA5]", "");	
-		String str = input_str.replaceAll("(?i)[^a-zA-Z0-9\u4E00-\u9FA5]", " ");
+		String str = input_str.replaceAll("[a-zA-Z0-9\\u3002\\uff1b\\uff0c\\uff1a\\u201c\\u201d\\uff08\\uff09\\u3001\\uff1f\\u300a\\u300b]", "");
 		
 		System.out.println(str);
 	}
