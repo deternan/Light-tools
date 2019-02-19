@@ -1,4 +1,3 @@
-package Mongo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +13,7 @@ import com.mongodb.MongoClient;
 
 /*
 * version: June 19, 2017 05:29 PM
-* Last revision: March 09, 2018 01:13 PM
+* Last revision: February 19, 2019 04:21 PM
 * 
 * Author : Chao-Hsuan Ke
 * Institute: Delta Research Center
@@ -24,24 +23,23 @@ import com.mongodb.MongoClient;
 
 public class MongoDBQuery 
 {
-	private String host = "10.120.136.144";    
-    private int port = 27017;    
+	private String host = "";    
+    private int port = 27017;
     String dbName = "";
     String colName = "";
-//    String userName = "admin";    
-//    String userPwd = "admin";
-    private static String query_Field = "user name";
+
+    private static String query_Field = "";
     private static String time_Field = "timestamp";
     // Query
     private DBCollection dbcollection;
     
-    
-    
+    private int elementNum = 10000;
+        
     private String input_query = "plc";
     
 	public MongoDBQuery() throws Exception
 	{
-//		query(input_query);
+//		query("quinn.su");
 		// list all data
 //		Datalist();
 		// Query by timestamp (Time gap)
@@ -66,8 +64,10 @@ public class MongoDBQuery
 		BasicDBObject latestQuery = new BasicDBObject();
 		latestQuery.put(time_Field, -1);
 
-		DBCursor cursor = dbcollection.find(searchQuery).sort(latestQuery).limit(1);
-
+		DBCursor cursor = dbcollection.find(searchQuery);
+		cursor.sort(latestQuery).limit(1);
+		cursor.batchSize(elementNum);
+		
 		while (cursor.hasNext()) 
 		{
 			System.out.println(cursor.next());
