@@ -5,7 +5,7 @@ package Lucene;
  * based on Lucene version: 7.2 
  * 
  * version: January 24 20, 2018 04:03 PM
- * Last revision: October 09, 2018 03:55 PM
+ * Last revision: March 05, 2019 09:26 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -33,6 +33,7 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.FuzzyQuery;
 import org.apache.lucene.search.IndexSearcher;
@@ -46,8 +47,8 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
 
 public class Lucene_Search 
-{	
-	private String indexFilePath = "";
+{
+	private String indexFilePath = "D:\\Eclipse\\SL4SM\\data\\Index\\";
 	Path path = Paths.get(indexFilePath);				
 	StandardAnalyzer analyzer = new StandardAnalyzer();		
 	// To store an index on disk, use this instead:	    
@@ -89,7 +90,7 @@ public class Lucene_Search
 		
 		// --------------------------------------------------------------------------  Fuzzy query
 		//Fuzzy_query();
-		
+		// Fuzzy_Multiquery_2(queryStr);
 		
 		// --------------------------------------------------------------------------
 	    
@@ -211,6 +212,23 @@ public class Lucene_Search
 			Document document = isearcher.doc(no);
 			
 			System.out.println(document.get(""));
+		}
+	}
+	
+	private void Fuzzy_Multiquery_2(String query_string) throws Exception
+	{		
+		// Fuzzy Query
+		Query fuzzyQuery_title = new FuzzyQuery(new Term(FIELD_TITLE, query_string), 2, 0);
+		Query fuzzyQuery_text = new FuzzyQuery(new Term(FIELD_CAPTION, query_string), 2, 0);
+		BooleanQuery.Builder query = new BooleanQuery.Builder();
+		query.add(fuzzyQuery_title, BooleanClause.Occur.SHOULD);
+		query.add(fuzzyQuery_text, BooleanClause.Occur.SHOULD);
+		ScoreDoc[] fSDs = isearcher.search(query.build(), Max_receive).scoreDocs;
+		
+		for (int i=0; i<fSDs.length; i++)
+		{
+			Document hitDoc = isearcher.doc(fSDs[i].doc);			
+			System.out.println(hitDoc.get(FIELD_TITLE)+"	"+hitDoc.get(FIELD_CAPTION)+"	"+fSDs[i].score);
 		}
 	}
 	
