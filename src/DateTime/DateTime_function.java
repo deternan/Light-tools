@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: January 04, 10:08 AM
+ * Last revision: March 05, 2019 05:01 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -11,6 +11,7 @@ package DateTime;
  */
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -66,10 +67,14 @@ public class DateTime_function
 //		System.out.println(dateNow);
 //		DayInWeek_check(dateNow, WeekstartDate, WeekendDate);
 		
+		// Today (hours range)
+//		TodayHoursRange();
+		// setting date (hours range)
+		DateHoursRange(2019,03,05);
 		// Week of this Year 
 //		WeekNoofYear();
 		// Week range date
-		WeekRange(10);
+//		WeekRange(10);
 		// Month of this year
 //		WeekNoofYear();
 //		MonthRange(6);
@@ -114,6 +119,53 @@ public class DateTime_function
         }
 		
 		return obj;
+	}
+	
+	private void TodayHoursRange()
+	{
+		// 0 hour
+		Calendar today0 = Calendar.getInstance();
+		today0.set(Calendar.HOUR_OF_DAY, 0);
+		today0.set(Calendar.MINUTE,  0);
+		today0.set(Calendar.SECOND,  0);
+		today0.set(Calendar.MILLISECOND,  0);
+				
+		Date todayZero = today0.getTime();
+		System.out.println(todayZero);
+		
+		// 24 hour
+		Calendar today24 = Calendar.getInstance();
+		today24.set(Calendar.HOUR_OF_DAY, 23);
+		today24.set(Calendar.MINUTE, 59);
+		today24.set(Calendar.SECOND, 59);
+		today24.set(Calendar.MILLISECOND, 99);
+		
+		Date todayTwentyFour = today24.getTime();
+		System.out.println(todayTwentyFour);
+	}
+	
+	private void DateHoursRange(int year, int month, int day) throws Exception
+	{		
+		Calendar setdate = Calendar.getInstance();
+		setdate.set(year, month, day);
+		
+		Calendar today0 = setdate.getInstance();
+		today0.set(setdate.HOUR_OF_DAY, 0);
+		today0.set(setdate.MINUTE,  0);
+		today0.set(setdate.SECOND,  0);
+		today0.set(setdate.MILLISECOND, 0);
+		
+		Date todayZero = today0.getTime();
+		System.out.println(todayZero);
+		
+		Calendar today24 = setdate.getInstance();
+		today24.set(setdate.HOUR_OF_DAY, 23);
+		today24.set(setdate.MINUTE, 59);
+		today24.set(setdate.SECOND, 59);
+		today24.set(setdate.MILLISECOND, 99);
+		
+		Date todayTwentyFour = today24.getTime();
+		System.out.println(todayTwentyFour);
 	}
 	
 	private void Week_Days(int year, int month, int day)
@@ -190,7 +242,6 @@ public class DateTime_function
 		System.out.println("Current week of year is : " + cal.get(Calendar.WEEK_OF_YEAR));
 		week_index = cal.get(Calendar.WEEK_OF_YEAR);
 		
-		
 		// This Week Start day
 		int DAY_OF_WEEK = cal.get(Calendar.DAY_OF_WEEK);
 		Calendar cal_Week_Start = Calendar.getInstance();
@@ -201,31 +252,15 @@ public class DateTime_function
 		Calendar cal_Week_End = cal_Week_Start;
 		cal_Week_End.set(Calendar.DAY_OF_WEEK, +7);
 		Date date_format_Week_End = cal_Week_End.getTime();
-		System.out.println("Week End: "+date_format_Week_End);
-				
-		//System.out.println(cal.get(Calendar.YEAR));
-		//System.out.println(cal.getWeeksInWeekYear());
-		// new Calendar
-		//Calendar calNew = Calendar.getInstance();		
-//		Calendar calNew = cal_Week_Start;
-//		calNew.set(Calendar.WEEK_OF_YEAR, week_index-1);
-//		//System.out.println("Past week of year is : " + calNew.get(Calendar.WEEK_OF_YEAR));
-//		Date date_format_new = calNew.getTime(); 
-//		System.out.println(date_format_new);
-		
+		System.out.println("Week End: "+date_format_Week_End);	
 		
 		Calendar Newcal_Week_Start = cal_Week_Start;
 
 		for (int i = 0; i <= range; i++) 
 		{
-			if((week_index-i)<0) {
-				//cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) -1);
+			if((week_index-i)<0) {				
 				Newcal_Week_Start.set(Calendar.YEAR, cal.get(Calendar.YEAR) -1);
 				week_index = Newcal_Week_Start.getWeeksInWeekYear() + 1;
-				//System.out.println(week_index-i+"	"+cal.getTime());
-			}else {
-				//week_index = Newcal_Week_Start.get(Newcal_Week_Start.WEEK_OF_YEAR);
-				
 				//System.out.println(week_index-i+"	"+cal.getTime());
 			}
 			
@@ -235,11 +270,9 @@ public class DateTime_function
 			Date Newdate_format_Week_Start = Newcal_Week_Start.getTime();
 			Newdate_format_Week_Start = Set_Time_Zero(Newdate_format_Week_Start);
 
-			Calendar Newcal_Week_End = cal_Week_Start;
-			//Newcal_Week_End.set(Calendar.WEEK_OF_YEAR, cal_Week_Start.YEAR);
+			Calendar Newcal_Week_End = cal_Week_Start;			
 			Newcal_Week_End.set(Calendar.DAY_OF_WEEK, +7);
-			Date Newdate_format_Week_End = Newcal_Week_End.getTime();
-			//Newdate_format_Week_End = Set_Time_Zero(Newdate_format_Week_End);
+			Date Newdate_format_Week_End = Newcal_Week_End.getTime();			
 			Newdate_format_Week_End = Set_Time_End(Newdate_format_Week_End);
 
 			System.out.println((week_index-i)+"	"+Newdate_format_Week_Start+"	"+Newdate_format_Week_End);
