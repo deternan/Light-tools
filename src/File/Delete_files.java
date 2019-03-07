@@ -2,7 +2,7 @@ package File;
 
 /*
  * version: August 25, 2018 04:53 PM
- * Last revision: August 25, 2018 04:53 PM
+ * Last revision: March 07, 2019 02:52 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -11,6 +11,8 @@ package File;
  */
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.RandomAccessFile;
 
 public class Delete_files 
 {
@@ -18,6 +20,12 @@ public class Delete_files
 	private String folder_source = "D:\\Eclipse\\SL4SM\\data\\Index\\";	
 	
 	public Delete_files()
+	{
+		Delete_files_1();
+		//Delete_files_2();
+	}
+	
+	private void Delete_files_1()
 	{
 		File folder = new File(folder_source);
 		File[] listOfFiles = folder.listFiles();
@@ -35,7 +43,24 @@ public class Delete_files
 		        }
 		    }
 		}
-
+	}
+	
+	private void Delete_files_2() throws Exception
+	{
+		File folder = new File(folder_source);
+		File[] listOfFiles = folder.listFiles();
+		
+		for (File file : listOfFiles)
+		{
+			if (file.isFile()) {
+				File f1 = new File(folder_source + file.getName());
+				System.out.println(f1);
+				RandomAccessFile raf=new RandomAccessFile(f1,"rw");
+				raf.close();
+				f1.delete();
+			}
+			
+		}
 	}
 	
 	public static void main(String[] args)
