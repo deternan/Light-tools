@@ -2,9 +2,9 @@
 version: [Apache Lucene 7.2.1](https://lucene.apache.org/)
 
 
-### Index
+## Index
 
-####索引儲存位址宣告
+###索引儲存位址宣告
 
 	String index_location;					// index location
 	
@@ -14,12 +14,12 @@ version: [Apache Lucene 7.2.1](https://lucene.apache.org/)
 	IndexReader reader = new IndexWriter(dir, new IndexWriterConfig(analyzer));
 
 
-####索引宣告
+###索引宣告
 
 	IndexWriter indexWriter;
 	Document doc = new Document();
 
-####建立索引
+###建立索引
 
 ###### 文字
 	String text_field = "TextFied";
@@ -38,7 +38,7 @@ version: [Apache Lucene 7.2.1](https://lucene.apache.org/)
 <https://lucene.apache.org/core/7_2_1/core/index.html?org/apache/lucene/document/StoredField.html>
 
 
-####建立可進行排序資料	
+###建立可進行排序資料	
 ###### 數值
 
 	String duration_field = "duration";
@@ -49,10 +49,19 @@ version: [Apache Lucene 7.2.1](https://lucene.apache.org/)
 
 ### Query
 
-#### single query
+### single query
 
 
-#### multi query
+### multi query
 
 
-#### fuzzy query
+### fuzzy query
+
+###### 文字
+	Query fuzzyQuery_title = new FuzzyQuery(new Term(FIELD_TITLE, query_string), 2, 0);
+	Query fuzzyQuery_text = new FuzzyQuery(new Term(FIELD_CAPTION, query_string), 2, 0);
+	BooleanQuery.Builder query = new BooleanQuery.Builder();
+	query.add(fuzzyQuery_title, BooleanClause.Occur.SHOULD);
+	query.add(fuzzyQuery_text, BooleanClause.Occur.SHOULD);
+
+<https://lucene.apache.org/core/7_2_0/core/org/apache/lucene/search/FuzzyQuery.html>
