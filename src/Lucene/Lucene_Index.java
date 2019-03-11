@@ -4,7 +4,7 @@ package Lucene;
  *  Lucene Index
  * 
  *	Version: January 15, 2018 02:14 PM
- * 	Last revision: January 15, 2018 02:14 PM
+ * 	Last revision: March 11, 2019 02:14 PM
  * 	
  */
 
@@ -27,6 +27,8 @@ import java.io.InputStreamReader;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.NumericDocValuesField;
+import org.apache.lucene.document.SortedNumericDocValuesField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
@@ -44,11 +46,11 @@ public class Lucene_Index
 	String text;
 	
 	// Lucene Index
-	private String index_folder = "C:\\ii\\";
+	private String index_folder = "";
 	private String str = "蘋果（Apple）承諾年初 iOS 系統更新可查看 iPhone 電池狀況，料將再掀電池更換潮，國外網站以美國蘋果零售人力推估，得 2.7 年消化預約客戶，大幅超出原訂年底截止時間。 蘋果變更 iOS 軟體導致舊款 iPhone 降速以延長電池壽命的做法引起爭議，蘋果日前為此道歉，並宣布針對需要更換電池的 iPhone 6 及其之後推出的機種，已過保固的電池替換費用從 79 美元降價到 29 美元，降幅 50 美元，從 2018 年 1 月開始至 12 月在全球適用。";
 	private String index_field = "";
 	
-	private String source_path = "C:\\a.txt";
+	private String source_path = "";
 	
 	public Lucene_Index() throws Exception 
 	{
@@ -81,8 +83,11 @@ public class Lucene_Index
 			
 			// doc1
 			Document doc1 = new Document();
+			// Text
 			doc1.add(new TextField("title", "001", Field.Store.YES));
 			doc1.add(new TextField("summary", text, Field.Store.YES));			
+			// Numerical
+			doc1.add(new SortedNumericDocValuesField("attach", 1));
 			
 			indexWriter.addDocument(doc1);
 			
