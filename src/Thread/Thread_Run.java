@@ -1,4 +1,17 @@
 package Thread;
+
+/*
+ * Thread
+ * 
+ * version: January 24 20, 2018 04:03 PM
+ * Last revision: March 11, 2019 04:34 PM
+ * 
+ * Author : Chao-Hsuan Ke
+ * Institute: Delta Research Center
+ * Company : Delta Electronics Inc. (Taiwan)
+ * 
+ */
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +28,8 @@ public class Thread_Run
 	DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S"); // Quoted "Z" to indicate UTC, no timezone offset
 	String nowAsISO;
 	
+	int times = 100;
+	
 	public Thread_Run() 
 	{
 //		System.out.println(Thread.currentThread().getName());
@@ -30,8 +45,13 @@ public class Thread_Run
 //			}.start();
 //		}
 		
-		for (int i = 0; i < 100; i++)
+		for (int i=0; i<times; i++)
 		{
+			try {
+	            Thread.sleep((int)500);
+	        } catch (InterruptedException e) {
+	        }
+			
 			Thread thread = new Thread("New Thread") 
 			{
 			      public void run(){
@@ -44,8 +64,9 @@ public class Thread_Run
 			  		// Timer			  		
 					df.setTimeZone(tz);
 					nowAsISO = df.format(new Date());					
-			  		
-			  		System.out.println("run by: " + getName()+"	"+randomNum+"	"+nowAsISO);
+					
+					
+			  		System.out.println(getName()+"	"+randomNum+"	"+nowAsISO);
 			      }
 			};
 			
