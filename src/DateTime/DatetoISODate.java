@@ -1,4 +1,4 @@
-package Time;
+package DateTime;
 
 /*
  * Date to ISODate
@@ -25,34 +25,31 @@ public class DatetoISODate
 	public DatetoISODate() throws Exception
 	{
 		Date utilDateSetting = SettingDateString(2018,6,01);
-		//System.out.println(utilDateSetting);
+		System.out.println(utilDateSetting);
 		
-		
+		//2018-07-09 15:37:25.440+08:00
+		//2018-07-09T00:00:00.000Z
 		System.out.println(getISO8601StringForDate(utilDateSetting));		
 	}
 	
 	private Date SettingDateString(int year, int month, int day)
 	{
-		Calendar myCal = Calendar.getInstance();
+		Calendar myCal = Calendar.getInstance();		
 		myCal.set(Calendar.YEAR, year);
 		myCal.set(Calendar.MONTH, month-1);
-		myCal.set(Calendar.DAY_OF_MONTH, 01+1);
-		myCal.set(Calendar.HOUR_OF_DAY, 0);
+		myCal.set(Calendar.DATE, day);
+		myCal.set(Calendar.HOUR, 0 - 4);
+		//myCal.set(Calendar.HOUR_OF_DAY, 0);
 		myCal.set(Calendar.MINUTE, 0);
 		myCal.set(Calendar.SECOND, 0);
 		
 		Date utilDate = myCal.getTime();
 		//System.out.println(utilDate);
 		return utilDate;
-		
-//		Date theDate = myCal.getTime();		
-//		DateTools.dateToString(theDate, Resolution.MONTH);					
-//		
-//		return DateTools.dateToString(theDate, Resolution.DAY);
 	}
 	
 	private static String getISO8601StringForDate(Date date) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.TAIWAN);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
 		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 				
 		return dateFormat.format(date);
