@@ -1,4 +1,4 @@
-package Text_related.subtitle;
+package Application.subtitle;
 
 /*
  * version: January 08, 2019 01:54 PM
@@ -19,12 +19,12 @@ import java.io.OutputStreamWriter;
 public class subtitle_parser 
 {
 	// Read file
-	private String folder = "";
-	private String filename = "";
+	private String folder = "C:\\Users\\barry.ke\\Desktop\\音檔包(三門課)\\subtitle\\srt\\Data analytics\\";
+	private String filename = "5.6.3.srt";
 	private BufferedReader br = null;
 	// Write file
-	private String output_folder = "";
-	private String output_file = filename+".output";		
+	private String output_folder = "C:\\Users\\Barry.Ke\\Desktop\\";
+	private String output_file = filename+".txt";		
 	private BufferedWriter writer = null;
 	
 	public subtitle_parser() throws Exception
@@ -38,9 +38,12 @@ public class subtitle_parser
 		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output_folder + output_file), "utf-8"));
 		
 		while ((line = br.readLine()) != null) 
-        {			            			
+        {			            
+			//System.out.println(line);
+			
 			check = CJKV_check(line);
-			if(check == true) {				
+			if(check == true) {
+				//System.out.println(line);				
 				writer.write(line+"\n");
 			}			
         }
@@ -52,6 +55,8 @@ public class subtitle_parser
 		boolean check;
 		check = input_str.codePoints().anyMatch(codepoint ->
 	            Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN);
+		
+		//System.out.println(check);
 		
 		return check;
 	}

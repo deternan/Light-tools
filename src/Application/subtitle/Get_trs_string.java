@@ -1,4 +1,4 @@
-package Text_related.subtitle;
+package Application.subtitle;
 
 /*
  * trs to String 
