@@ -1,4 +1,4 @@
-package File;
+package Text_related.subtitle;
 
 /*
  * trs to String 
@@ -42,6 +42,9 @@ public class Get_trs_string
 		private String defined_text_e = "</Turn>";
 		private String sec_text_str;
 	
+	// Output
+//	private String OUTPUT_FILE;
+	
 	public Get_trs_string(String lvcsr_path_file) throws Exception
 	{		
 		String line = "";
@@ -53,13 +56,32 @@ public class Get_trs_string
 				System.out.println(line);
 			}			
         }
-		in.close();			
+		in.close();	
+		
 		System.out.println("Finished");
 	}
 	
+	private int Words_count_Chinese(String sec_text_str)
+	{
+		//int wordcount = 0;
+		int chinese = 0;
+	    //int english= 0;
+	    for (int i = 0; i < sec_text_str.length(); i++ ){
+	        char c = sec_text_str.charAt(i);
+	        if ((int) c < 256) {
+	            //english ++;
+	        } else {
+	            chinese ++;
+	        }        
+	    }
+	    
+		return chinese;
+	}
+	
 	public static void main(String[] args) throws Exception
-	{				
-		String lvcsr_path_file = "";		
+	{		
+		double Frequency_gap = 5;			// Initial = 5 sec
+		String lvcsr_path_file = "C:\\Users\\Barry.Ke\\Desktop\\to Text\\subtitle\\Voice team meeting\\MMWM0066_2015-09-24_MeetingRoom2_mix2_16k_sennheiser.trs";		
 		Get_trs_string L2J = new Get_trs_string(lvcsr_path_file);
 	}
 	
