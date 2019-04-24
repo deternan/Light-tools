@@ -1,15 +1,21 @@
 package Text_related.Stanford;
 
 /*
- * Auto-Updated auto-completed Items 
+ * Part of Speech 
  * 
  * version: August 24, 2019 09:56 AM
- * Last revision: April 24, 2019 10:38 AM
+ * Last revision: April 24, 2019 01:19 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
  * Company : Delta Electronics Inc. (Taiwan)
  * 
+ */
+
+/*
+ * JAR
+ * stanford-corenlp-3.4.jar
+ * stanford-corenlp-3.4-models.jar
  */
 
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
