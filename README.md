@@ -24,7 +24,16 @@ Each function was implemented by both programming languages
 
 ## Text-related
 
-### 
+### Stanford
+
+##### JAR 
+- stanford-corenlp-3.4.jar <br>
+- stanford-corenlp-3.4-models.jar <br>
+- /taggers/english-left3words-distsim.tagger <br>
+- /taggers/english-left3words-distsim.tagger.props <br>
+
+
+---
 
 Auto_download
 
