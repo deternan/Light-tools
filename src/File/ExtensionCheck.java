@@ -4,7 +4,7 @@ package File;
  * get file extension name
  * 
  * version: May 04, 2019 05:30 PM
- * Last revision: May 04, 2019 05:30 PM
+ * Last revision: May 06, 2019 00:40 PM
  * 
  * Author : Chao-Hsuan Ke
  * 
@@ -27,13 +27,10 @@ public class ExtensionCheck {
 		    if (file.isFile()) {
 		        System.out.println(file.getName());
 		        		        
-		        String extension = getFileExtension(new File(folder_source + file.getName()));
-		        System.out.println("File Extension : " + extension.substring(1, extension.length()));
-		        
+		        String Getextension = getFileExtension(new File(folder_source + file.getName()));
+		        String extension = Getextension.substring(1, Getextension.length());
 		    }
 		}
-		
-		
 		
 	}
 	
