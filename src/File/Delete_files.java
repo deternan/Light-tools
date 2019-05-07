@@ -2,7 +2,7 @@ package File;
 
 /*
  * version: August 25, 2018 04:53 PM
- * Last revision: March 07, 2019 02:52 PM
+ * Last revision: May 07, 2019 10:28 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -13,6 +13,7 @@ package File;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
+import java.util.Arrays;
 
 public class Delete_files 
 {
@@ -29,7 +30,8 @@ public class Delete_files
 	{
 		File folder = new File(folder_source);
 		File[] listOfFiles = folder.listFiles();
-
+		Arrays.sort(listOfFiles);
+		
 		for (File file : listOfFiles) {
 		    if (file.isFile()) {
 		        System.out.println(file.getName());

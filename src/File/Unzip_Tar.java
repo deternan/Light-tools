@@ -6,7 +6,7 @@ package File;
  * 
  * 
  * Version: June 16, 2016	02:19 PM
- * Last revision: September 26, 2017	09:21 AM 
+ * Last revision: May 07, 2019 10:27 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -50,7 +50,6 @@ public class Unzip_Tar
 		// Read
 		File folder = new File(Gz_Save_Path);
 		File[] listOfFiles = folder.listFiles();
-		
 		Arrays.sort(listOfFiles);
 		
 		// Output
