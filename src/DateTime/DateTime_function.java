@@ -73,11 +73,12 @@ public class DateTime_function
 		// Week of this Year 
 //		WeekNoofYear();
 		// Week range date
-		WeekRange(10);
+//		WeekRange(10);
 		// Month of this year
 //		WeekNoofYear();
 //		MonthRange(6);
 		// WeekRange (based on specific date)
+		WeekRange_basedonSpecificDate("2019-05-21", 10);
 	}
 	
 	private String Time_to_String(String input)
@@ -327,6 +328,27 @@ public class DateTime_function
 			
 			System.out.println(Newdate_month_Start+"	"+Newdate_month_End+"	"+totalday);			
 		}
+	}
+	
+	private void WeekRange_basedonSpecificDate(String DateStr, int BeforeNum) throws Exception
+	{
+		for(int i=1; i<=BeforeNum; i++)
+		{
+			Date beforeDays = getBeforeDate(DateStr, (i*7));
+			System.out.println(beforeDays);
+		}
+	}
+	
+	private Date getBeforeDate(String dateString, int beforeDays) throws ParseException {
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date inputDate = dateFormat.parse(dateString);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(inputDate);
+		int inputDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
+		cal.set(Calendar.DAY_OF_YEAR, inputDayOfYear - beforeDays);
+
+		return cal.getTime();
 	}
 	
 	private Date Set_Time_Zero(Date inputdate)
