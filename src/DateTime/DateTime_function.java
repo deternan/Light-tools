@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: March 05, 2019 05:01 PM
+ * Last revision: May 21, 2019 01:16 PM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,10 +57,8 @@ public class DateTime_function
 		
 		// Today
 //		Today();
-//		
 //		// Date Parser		
-//		ISODateParser();
-//		
+//		ISODateParser();		
 //		// Date comparison
 //		String today_temp = "2018-09-09";
 //		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(basic_pattern, Locale.TAIWAN);
@@ -70,14 +69,15 @@ public class DateTime_function
 		// Today (hours range)
 //		TodayHoursRange();
 		// setting date (hours range)
-		DateHoursRange(2019,03,05);
+//		DateHoursRange(2019,03,05);
 		// Week of this Year 
 //		WeekNoofYear();
 		// Week range date
-//		WeekRange(10);
+		WeekRange(10);
 		// Month of this year
 //		WeekNoofYear();
 //		MonthRange(6);
+		// WeekRange (based on specific date)
 	}
 	
 	private String Time_to_String(String input)
@@ -211,7 +211,6 @@ public class DateTime_function
 		
 		LocalDate dateTime = LocalDate.parse(data_spec_str, formatter);
 		System.out.println(dateTime);
-		
 	}
 	
 	private void DayInWeek_check(LocalDate dateNow, LocalDate weekStart, LocalDate weekEnd) throws Exception
@@ -228,10 +227,10 @@ public class DateTime_function
 	{
 		// Today		
 		Calendar cal = Calendar.getInstance();
-		System.out.println("Current week of month is : " + cal.get(Calendar.WEEK_OF_MONTH));
-		System.out.println("Current week of year is : " + cal.get(Calendar.WEEK_OF_YEAR));
+		System.out.println("Current week of month is : " + (cal.get(Calendar.WEEK_OF_MONTH)+1));
+		System.out.println("Current Date of this month is : " + cal.get(Calendar.WEEK_OF_YEAR));
 		cal.add(Calendar.WEEK_OF_MONTH, 1);
-		System.out.println("date after one year : " + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE) + "-"
+		System.out.println("date after one week : " + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE) + "-"
 				+ cal.get(Calendar.YEAR));
 	}	
 	
