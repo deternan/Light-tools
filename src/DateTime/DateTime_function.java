@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: May 21, 2019 01:16 PM
+ * Last revision: May 23, 2019 09:20 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -29,6 +29,7 @@ import org.apache.lucene.document.DateTools.Resolution;
 public class DateTime_function 
 {
 	DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+	
 	// Pattern
 	private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy";		// Thu Nov 30 16:34:55 CST 2017
 	private String basic_pattern = "yyyy-MM-dd";
@@ -78,7 +79,10 @@ public class DateTime_function
 //		WeekNoofYear();
 //		MonthRange(6);
 		// WeekRange (based on specific date)
-		WeekRange_basedonSpecificDate("2019-05-21", 10);
+//		WeekRange_basedonSpecificDate("20190521", 10);
+		
+		// Before Date
+		getBeforeDateStrType("20190523", 7);
 	}
 	
 	private String Time_to_String(String input)
@@ -335,13 +339,14 @@ public class DateTime_function
 		for(int i=1; i<=BeforeNum; i++)
 		{
 			Date beforeDays = getBeforeDate(DateStr, (i*7));
-			System.out.println(beforeDays);
+			System.out.println(beforeDays);			
+			//System.out.println(beforeDays.getYear()+" "+beforeDays.getMonth()+" "+beforeDays.getDay());
 		}
 	}
 	
 	private Date getBeforeDate(String dateString, int beforeDays) throws ParseException {
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 		Date inputDate = dateFormat.parse(dateString);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(inputDate);
@@ -349,6 +354,20 @@ public class DateTime_function
 		cal.set(Calendar.DAY_OF_YEAR, inputDayOfYear - beforeDays);
 
 		return cal.getTime();
+	}
+	
+	private void getBeforeDateStrType(String dateString, int beforeDays) throws ParseException {
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");		
+		Date dt = sdf.parse(dateString);
+		Calendar rightNow = Calendar.getInstance();
+		rightNow.setTime(dt);
+		//rightNow.add(Calendar.YEAR,-1);
+		//rightNow.add(Calendar.MONTH,3);
+		rightNow.add(Calendar.DAY_OF_YEAR, -beforeDays);
+		Date dt1 = rightNow.getTime();
+		String reStr = sdf.format(dt1);
+		System.out.println(reStr);
 	}
 	
 	private Date Set_Time_Zero(Date inputdate)
