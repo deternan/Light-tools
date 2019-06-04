@@ -79,10 +79,22 @@ public class DateTime_function
 //		WeekNoofYear();
 //		MonthRange(6);
 		// WeekRange (based on specific date)
-//		WeekRange_basedonSpecificDate("20190521", 10);
+//		WeekRange_basedonSpecificDate("20190604", 10);
 		
+		// DateRange
+		int daysgap2 = getDayLength("20181215", "20181216");
+		daysgap2++; 
+		System.out.println(daysgap2);
 		// Before Date
-		getBeforeDateStrType("20190523", 7);
+//		String todayStr = "20190523";
+//			// This week
+//			String thisweekStartDate = getBeforeDateStrType(todayStr, 6);
+//			String thisweekEndDate = todayStr;
+//			System.out.println(thisweekStartDate+"	"+thisweekEndDate);
+//			// Last week 
+//			String lastweekStartDate = getBeforeDateStrType(thisweekStartDate, 7);
+//			String lastweekEndDate = getBeforeDateStrType(thisweekStartDate, 1);
+//			System.out.println(lastweekStartDate+"	"+lastweekEndDate);
 	}
 	
 	private String Time_to_String(String input)
@@ -336,10 +348,13 @@ public class DateTime_function
 	
 	private void WeekRange_basedonSpecificDate(String DateStr, int BeforeNum) throws Exception
 	{
-		for(int i=1; i<=BeforeNum; i++)
+		for(int i=1; i<=BeforeNum; i++)		
 		{
-			Date beforeDays = getBeforeDate(DateStr, (i*7));
-			System.out.println(beforeDays);			
+			Date beforeDays = getBeforeDate(DateStr, (i*7)-1);
+			String aa = DateTools.dateToString(beforeDays, Resolution.DAY);
+			Date newnew = getBeforeDate(aa, -7);
+			
+			System.out.println(beforeDays+"	"+aa+"	"+newnew);
 			//System.out.println(beforeDays.getYear()+" "+beforeDays.getMonth()+" "+beforeDays.getDay());
 		}
 	}
@@ -356,7 +371,7 @@ public class DateTime_function
 		return cal.getTime();
 	}
 	
-	private void getBeforeDateStrType(String dateString, int beforeDays) throws ParseException {
+	private String getBeforeDateStrType(String dateString, int beforeDays) throws ParseException {
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");		
 		Date dt = sdf.parse(dateString);
@@ -367,8 +382,30 @@ public class DateTime_function
 		rightNow.add(Calendar.DAY_OF_YEAR, -beforeDays);
 		Date dt1 = rightNow.getTime();
 		String reStr = sdf.format(dt1);
-		System.out.println(reStr);
+		//System.out.println(reStr);
+		
+		return reStr;
 	}
+
+	private int getDayLength(String start_date,String end_date) throws Exception{
+	
+		String DATE_FORMAT_NORMAL = "yyyyMMdd";
+		Date fromDate = getStrToDate(start_date,DATE_FORMAT_NORMAL);
+		Date toDate = getStrToDate(end_date,DATE_FORMAT_NORMAL);
+		long from = fromDate.getTime();
+		long to = toDate.getTime();
+		
+		int day = (int)((to-from)/(24*60*60*1000));
+
+		return day; 
+	}
+	
+	private Date getStrToDate(String date,String fomtter) throws Exception{
+		DateFormat df = new SimpleDateFormat(fomtter);
+	
+		return df.parse(date);
+	}
+		
 	
 	private Date Set_Time_Zero(Date inputdate)
     {
