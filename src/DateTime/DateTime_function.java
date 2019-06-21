@@ -1,5 +1,7 @@
 package DateTime;
 
+import java.sql.Timestamp;
+
 /*
  * version: February 22, 2018 06:23 PM
  * Last revision: May 23, 2019 09:20 AM
@@ -56,6 +58,12 @@ public class DateTime_function
 //		day_array = Date_separation("2018-09-01");
 //		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
 		
+		// Translation
+			// long to Date
+			long longDate = 1560219996522L;
+			Date timeTmp = new Timestamp(longDate);
+			System.out.println(longDate+"	"+timeTmp);
+		
 		// Today
 //		Today();
 //		// Date Parser		
@@ -82,9 +90,9 @@ public class DateTime_function
 //		WeekRange_basedonSpecificDate("20190604", 10);
 		
 		// DateRange
-		int daysgap2 = getDayLength("20181215", "20181216");
-		daysgap2++; 
-		System.out.println(daysgap2);
+//		int daysgap2 = getDayLength("20181215", "20181216");
+//		daysgap2++; 
+//		System.out.println(daysgap2);
 		// Before Date
 //		String todayStr = "20190523";
 //			// This week
