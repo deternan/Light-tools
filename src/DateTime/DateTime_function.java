@@ -59,10 +59,7 @@ public class DateTime_function
 //		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
 		
 		// Translation
-			// long to Date
-			long longDate = 1560219996522L;
-			Date timeTmp = new Timestamp(longDate);
-			System.out.println(longDate+"	"+timeTmp);
+		FormatTranslation();	
 		
 		// Today
 //		Today();
@@ -103,6 +100,21 @@ public class DateTime_function
 //			String lastweekStartDate = getBeforeDateStrType(thisweekStartDate, 7);
 //			String lastweekEndDate = getBeforeDateStrType(thisweekStartDate, 1);
 //			System.out.println(lastweekStartDate+"	"+lastweekEndDate);
+	}
+	
+	private void FormatTranslation() throws Exception
+	{
+		// long to Date
+		long longDate = 1560219996522L;
+		Date timeTmp = new Timestamp(longDate);
+		System.out.println(longDate+"	"+timeTmp);
+		
+		// Date to long
+		String string_date = "2019-06-21";
+		SimpleDateFormat f = new SimpleDateFormat(basic_pattern);	// yyyy-MM-dd
+		Date d = f.parse(string_date);
+	    long milliseconds = d.getTime();
+	    System.out.println(milliseconds);
 	}
 	
 	private String Time_to_String(String input)
