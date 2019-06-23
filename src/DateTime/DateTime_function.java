@@ -1,16 +1,15 @@
 package DateTime;
 
-import java.sql.Timestamp;
-
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: May 23, 2019 09:20 AM
+ * Last revision: June 23, 2019 10:34 AM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
+ * E-mail : phelpske.dev at gmail dot com
  * 
  */
+
+import java.sql.Timestamp;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -20,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
@@ -100,6 +100,9 @@ public class DateTime_function
 //			String lastweekStartDate = getBeforeDateStrType(thisweekStartDate, 7);
 //			String lastweekEndDate = getBeforeDateStrType(thisweekStartDate, 1);
 //			System.out.println(lastweekStartDate+"	"+lastweekEndDate);
+		
+		// list all date
+		ListAllDate();
 	}
 	
 	private void FormatTranslation() throws Exception
@@ -426,7 +429,6 @@ public class DateTime_function
 		return df.parse(date);
 	}
 		
-	
 	private Date Set_Time_Zero(Date inputdate)
     {
     	 Calendar cal = Calendar.getInstance();  
@@ -462,6 +464,41 @@ public class DateTime_function
 
 		return true;
 	}
+	
+	private void ListAllDate() throws Exception
+	{
+		Calendar cal = Calendar.getInstance();  
+		  String start = "2019-05-01";  
+		  String end = "2019-07-31";  
+		  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+		  Date dBegin = sdf.parse(start);  
+		  Date dEnd = sdf.parse(end);  
+		  List<Date> lDate = findDates(dBegin, dEnd);  
+		  for (Date date : lDate)  
+		  {  
+		   System.out.println(sdf.format(date));  
+		  }  
+	}
+	
+	private static List<Date> findDates(Date dBegin, Date dEnd)  
+	 {  
+	  List lDate = new ArrayList();  
+	  lDate.add(dBegin);  
+	  Calendar calBegin = Calendar.getInstance();  
+	  
+	  calBegin.setTime(dBegin);  
+	  Calendar calEnd = Calendar.getInstance();  
+	  
+	  calEnd.setTime(dEnd);  
+	 
+	  while (dEnd.after(calBegin.getTime()))  
+	  {  
+	     
+	   calBegin.add(Calendar.DAY_OF_MONTH, 1);  
+	   lDate.add(calBegin.getTime());  
+	  }  
+	  return lDate;  
+	}  
 	
 	public static void main(String[] args)
 	{
