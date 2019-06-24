@@ -30,11 +30,12 @@ import org.apache.lucene.document.DateTools.Resolution;
 
 public class DateTime_function 
 {
-	DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+	private String basic_pattern = "yyyyMMdd";
+	DateFormat df = new SimpleDateFormat(basic_pattern, Locale.getDefault());
 	
 	// Pattern
 	private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy";		// Thu Nov 30 16:34:55 CST 2017
-	private String basic_pattern = "yyyy-MM-dd";
+	
 	
 	private Pattern p;
 	private Matcher m;
@@ -50,16 +51,16 @@ public class DateTime_function
 	{
 		// time to string 
 			// example :  2018-02		
-		String date_str = Time_to_String("2018-09");
+		//String date_str = Time_to_String("2018-09");
 		//System.out.println(date_str);
 						
 		//Week Days Range(2018,02,21);
-//		ArrayList<String> day_array;
-//		day_array = Date_separation("2018-09-01");
-//		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
+		ArrayList<String> day_array;
+		day_array = Date_separation("20190624");
+		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
 		
 		// Translation
-		FormatTranslation();	
+//		FormatTranslation();	
 		
 		// Today
 //		Today();
@@ -84,7 +85,7 @@ public class DateTime_function
 //		WeekNoofYear();
 //		MonthRange(6);
 		// WeekRange (based on specific date)
-//		WeekRange_basedonSpecificDate("20190604", 10);
+//		WeekRange_basedonSpecificDate("20190624", 10);
 		
 		// DateRange
 //		int daysgap2 = getDayLength("20181215", "20181216");
@@ -102,7 +103,7 @@ public class DateTime_function
 //			System.out.println(lastweekStartDate+"	"+lastweekEndDate);
 		
 		// list all date
-		ListAllDate();
+//		ListAllDate();
 	}
 	
 	private void FormatTranslation() throws Exception
@@ -146,7 +147,8 @@ public class DateTime_function
 		Date return_date = null;
 		ArrayList<String> obj = new ArrayList<String>();
 		
-		String pattern = "([\\d]{4})-([\\d]{2})-([\\d]{2})";
+		//String pattern = "([\\d]{4})-([\\d]{2})-([\\d]{2})";
+		String pattern = "([\\d]{4})([\\d]{2})([\\d]{2})";
 		
 		p = Pattern.compile(pattern);
         m = p.matcher(input);        
