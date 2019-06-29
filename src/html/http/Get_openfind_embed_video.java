@@ -1,4 +1,4 @@
-package html_download;
+package http;
 
 /*
  * Auto_download.java

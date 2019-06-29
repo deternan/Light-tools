@@ -1,4 +1,4 @@
-package html;
+package html.web;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

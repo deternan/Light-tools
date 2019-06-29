@@ -1,4 +1,4 @@
-package html_download;
+package http;
 
 import java.io.BufferedInputStream;
 import java.io.File;
