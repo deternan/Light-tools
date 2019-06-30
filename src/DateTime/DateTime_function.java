@@ -55,15 +55,15 @@ public class DateTime_function
 		//System.out.println(date_str);
 						
 		//Week Days Range(2018,02,21);
-		ArrayList<String> day_array;
-		day_array = Date_separation("20190624");
-		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
+//		ArrayList<String> day_array;
+//		day_array = Date_separation("20190624");
+//		Week_Days(Integer.parseInt(day_array.get(0)), Integer.parseInt(day_array.get(1)), Integer.parseInt(day_array.get(2)));
 		
 		// Translation
 //		FormatTranslation();	
 		
 		// Today
-//		Today();
+		Today();
 //		// Date Parser		
 //		ISODateParser();		
 //		// Date comparison

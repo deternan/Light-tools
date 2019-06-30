@@ -1,4 +1,4 @@
-package File;
+package Files;
 
 /*
  * get file extension name

@@ -1,4 +1,4 @@
-package File;
+package Files;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
