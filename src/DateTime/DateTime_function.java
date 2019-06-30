@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: June 23, 2019 10:34 AM
+ * Last revision: July 01, 2019 00:26 AM
  * 
  * Author : Chao-Hsuan Ke
  * E-mail : phelpske.dev at gmail dot com
@@ -61,7 +61,7 @@ public class DateTime_function {
 		// FormatTranslation();
 
 		// Today
-		// Today();
+		//Today();
 		// // Date Parser
 		// ISODateParser();
 		// // Date comparison
@@ -103,8 +103,17 @@ public class DateTime_function {
 
 		// list all date
 		// ListAllDate();
-		// Month increment
-		MonthIncrement();
+		// Month Increment
+		//MonthIncrement();
+		// Month gap
+			Date today = Calendar.getInstance().getTime();
+			SimpleDateFormat sdf  = new SimpleDateFormat(basic_pattern);
+	        String todayStr = sdf.format(today);
+			String string_date = "20190618";
+			SimpleDateFormat f = new SimpleDateFormat(basic_pattern); // yyyy-MM-dd
+			Date specificDate = f.parse(string_date);
+		//MonthDiff(today, specificDate);
+			MonthDiff(todayStr, string_date);
 	}
 
 	private void FormatTranslation() throws Exception {
@@ -498,7 +507,26 @@ public class DateTime_function {
         }
 	}
 	
-	
+	private void MonthDiff(String d1, String d2) throws Exception
+	{
+        SimpleDateFormat sdf  = new SimpleDateFormat(basic_pattern);
+        Calendar c = Calendar.getInstance();
+        c.setTime(sdf.parse(d1));
+        int year1 = c.get(Calendar.YEAR);
+        int month1 = c.get(Calendar.MONTH);
+         
+        c.setTime(sdf.parse(d2));
+        int year2 = c.get(Calendar.YEAR);
+        int month2 = c.get(Calendar.MONTH);
+         
+        int result;
+        if(year1 == year2) {
+            result = month1 - month2;
+        } else {
+            result = 12*(year1 - year2) + month1 - month2;
+        }
+        System.out.println(result);
+ 	}
 	
 	public static void main(String[] args) {
 		try {
