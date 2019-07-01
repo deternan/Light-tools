@@ -106,14 +106,17 @@ public class DateTime_function {
 		// Month Increment
 		//MonthIncrement();
 		// Month gap
-			Date today = Calendar.getInstance().getTime();
-			SimpleDateFormat sdf  = new SimpleDateFormat(basic_pattern);
-	        String todayStr = sdf.format(today);
-			String string_date = "20190618";
-			SimpleDateFormat f = new SimpleDateFormat(basic_pattern); // yyyy-MM-dd
-			Date specificDate = f.parse(string_date);
+//			Date today = Calendar.getInstance().getTime();
+//			SimpleDateFormat sdf  = new SimpleDateFormat(basic_pattern);
+//	        String todayStr = sdf.format(today);
+//			String string_date = "20190618";
+//			SimpleDateFormat f = new SimpleDateFormat(basic_pattern); // yyyy-MM-dd
+//			Date specificDate = f.parse(string_date);
 		//MonthDiff(today, specificDate);
-			MonthDiff(todayStr, string_date);
+			//MonthDiff(todayStr, string_date);
+		// AD to TW
+		convertTWDate("2018/07/13");
+		
 	}
 
 	private void FormatTranslation() throws Exception {
@@ -492,7 +495,7 @@ public class DateTime_function {
         String startDate="201805";
         int addMonths = 12;
         
-        for(int i=0; i<addMonths; i++){
+        for(int i=0; i<=addMonths; i++){
         	//Thread.sleep(10000);
         	Date dt=sdf.parse(startDate);
         	Calendar rightNow = Calendar.getInstance();
@@ -527,6 +530,23 @@ public class DateTime_function {
         }
         System.out.println(result);
  	}
+	
+	private void convertTWDate(String AD) {
+	    SimpleDateFormat df4 = new SimpleDateFormat("yyyy/MM/dd");
+	    SimpleDateFormat df2 = new SimpleDateFormat("MMdd");
+	    Calendar cal = Calendar.getInstance();
+	    String TWDate = "";
+	    try {
+	        cal.setTime(df4.parse(AD));
+	        cal.add(Calendar.YEAR, -1911);
+	        TWDate = Integer.toString(cal.get(Calendar.YEAR)) + df2.format(cal.getTime());
+	        //return TWDate;
+	        System.out.println(TWDate);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        //return null;
+	    }
+	}
 	
 	public static void main(String[] args) {
 		try {
