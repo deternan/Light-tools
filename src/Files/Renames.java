@@ -17,7 +17,7 @@ import org.apache.commons.io.FileUtils;
 
 public class Renames
 {
-	private String sourceFolder = "/data/git/DataSet/ptt/Stock data/aa/";
+	private String sourceFolder = "/data/git/DataSet/ptt/Stock data/";
 	
 	public Renames()
 	{
