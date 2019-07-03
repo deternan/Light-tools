@@ -48,7 +48,7 @@ public class Thread_Run
 		for (int i=0; i<times; i++)
 		{
 			try {
-	            Thread.sleep((int)500);
+	            Thread.sleep((int)20000);
 	        } catch (InterruptedException e) {
 	        }
 			
