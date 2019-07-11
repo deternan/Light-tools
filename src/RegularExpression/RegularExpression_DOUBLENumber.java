@@ -19,7 +19,7 @@ public class RegularExpression_DOUBLENumber
 	
 	public RegularExpression_DOUBLENumber()
 	{		
-		String data = "12.45aa69.7";
+		String data = "12.45aa69.7and60";
 		
 		// Parsing
 		Matcher matcher = pattern.matcher(data);        
