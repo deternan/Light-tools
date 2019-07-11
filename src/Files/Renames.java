@@ -17,7 +17,7 @@ import org.apache.commons.io.FileUtils;
 
 public class Renames
 {
-	private String sourceFolder = "/data/git/DataSet/ptt/Stock data/";
+	private String sourceFolder = "/data/git/DataSet/ptt/Stock data/re/";
 	
 	public Renames()
 	{
@@ -27,7 +27,7 @@ public class Renames
 		Arrays.sort(listOfFiles);
 		
 		String oldfilename;
-		int index = 1;
+		int index = 3018;
 		String indexStr;	int tmp;
 		String fullStr;
 		
