@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: February 22, 2018 06:23 PM
- * Last revision: July 01, 2019 00:26 AM
+ * Last revision: July 13, 2019 09:55 PM
  * 
  * Author : Chao-Hsuan Ke
  * E-mail : phelpske.dev at gmail dot com
@@ -67,9 +67,9 @@ public class DateTime_function {
 		//Today();
 		//Date Parser
 			// revised format
-			data_spec_str = replaceSpace(data_spec_str);
-		String dateformat = ISODateParser(data_spec_str);
-		convertTWDate(dateformat);
+		//	data_spec_str = replaceSpace(data_spec_str);
+		//String dateformat = ISODateParser(data_spec_str);
+		//convertTWDate(dateformat);
 		// // Date comparison
 		// String today_temp = "2018-09-09";
 		// DateTimeFormatter formatter = DateTimeFormatter.ofPattern(basic_pattern,
@@ -92,6 +92,9 @@ public class DateTime_function {
 		// WeekRange (based on specific date)
 		// WeekRange_basedonSpecificDate("20190624", 10);
 
+		// Date calculation
+		addDate();
+		
 		// DateRange
 		// int daysgap2 = getDayLength("20181215", "20181216");
 		// daysgap2++;
@@ -244,6 +247,16 @@ public class DateTime_function {
 		WeekendDate = LocalDate.parse(WeekendDate_str, formatter);
 	}
 
+	private void addDate()
+	{
+		Calendar myDate = Calendar.getInstance();
+		Date today = Calendar.getInstance().getTime();
+		myDate.add(Calendar.DATE, 3);
+		String afteradd = df.format(myDate.getTime());
+		System.out.println(today);
+		System.out.println(afteradd);
+	}
+	
 	private void Today() {
 		Date today = Calendar.getInstance().getTime();
 		String today_str = df.format(today.getTime());
