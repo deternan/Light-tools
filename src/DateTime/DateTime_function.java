@@ -33,7 +33,8 @@ public class DateTime_function {
 	DateFormat df = new SimpleDateFormat(basic_pattern, Locale.getDefault());
 
 	// Pattern
-	private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy"; // Thu Nov 30 16:34:55 CST 2017
+	//private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy"; // Thu Nov 30 16:34:55 CST 2017
+	private String isotime_pattern = "EEE MMM dd HH:mm:ss yyyy";
 
 	private Pattern p;
 	private Matcher m;
@@ -43,8 +44,10 @@ public class DateTime_function {
 	LocalDate WeekendDate;
 
 	// private String data_spec_str = "星期五 十二月 01 12:17:04 TST 2017";
-	private String data_spec_str = "Tue Jul 24 14:38:50 CST 2018";
-
+	//private String data_spec_str = "Tue Jul 24 14:38:50 CST 2018";
+	//private String data_spec_str = "Sat Dec  9 00:36:17 2017";
+	private String data_spec_str = "Sat Dec 09 13:50:34 2017";
+	
 	public DateTime_function() throws Exception {
 		// time to string
 		// example : 2018-02
@@ -62,8 +65,11 @@ public class DateTime_function {
 
 		// Today
 		//Today();
-		// // Date Parser
-		// ISODateParser();
+		//Date Parser
+			// revised format
+			data_spec_str = replaceSpace(data_spec_str);
+		String dateformat = ISODateParser(data_spec_str);
+		convertTWDate(dateformat);
 		// // Date comparison
 		// String today_temp = "2018-09-09";
 		// DateTimeFormatter formatter = DateTimeFormatter.ofPattern(basic_pattern,
@@ -115,7 +121,7 @@ public class DateTime_function {
 		//MonthDiff(today, specificDate);
 			//MonthDiff(todayStr, string_date);
 		// AD to TW
-		convertTWDate("2018/07/13");
+		//convertTWDate("2018/07/13");
 		
 	}
 
@@ -244,9 +250,25 @@ public class DateTime_function {
 		System.out.println(today_str);
 	}
 
-	private void ISODateParser() throws Exception {
+	private String replaceSpace(String dateStr) {
+		String dategap = "0";
+		String front = dateStr.substring(0, 8);
+		String last = dateStr.substring(9, dateStr.length());
+		String newdateStr = "";
+		if(dateStr.substring(8, 9).equalsIgnoreCase(" ")) {
+			System.out.println(dateStr);
+			newdateStr = front + dategap + last;
+			System.out.println(newdateStr);
+		}else {
+			newdateStr = dateStr;
+		}
+		
+		return newdateStr;
+	}
+	
+	private String ISODateParser(String dateStr) throws Exception {
 		boolean chinesecheck;
-		chinesecheck = isChinese(data_spec_str);
+		chinesecheck = isChinese(dateStr);
 		// System.out.println(check);
 		DateTimeFormatter formatter;
 		if (chinesecheck == true) {
@@ -257,6 +279,8 @@ public class DateTime_function {
 
 		LocalDate dateTime = LocalDate.parse(data_spec_str, formatter);
 		System.out.println(dateTime);
+		
+		return dateTime.toString();
 	}
 
 	private void DayInWeek_check(LocalDate dateNow, LocalDate weekStart, LocalDate weekEnd) throws Exception {
@@ -532,7 +556,7 @@ public class DateTime_function {
  	}
 	
 	private void convertTWDate(String AD) {
-	    SimpleDateFormat df4 = new SimpleDateFormat("yyyy/MM/dd");
+	    SimpleDateFormat df4 = new SimpleDateFormat("yyyy-MM-dd");
 	    SimpleDateFormat df2 = new SimpleDateFormat("MMdd");
 	    Calendar cal = Calendar.getInstance();
 	    String TWDate = "";
