@@ -33,8 +33,8 @@ public class DateTime_function {
 	DateFormat df = new SimpleDateFormat(basic_pattern, Locale.getDefault());
 
 	// Pattern
-	//private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy"; // Thu Nov 30 16:34:55 CST 2017
-	private String isotime_pattern = "EEE MMM dd HH:mm:ss yyyy";
+	private String isotime_pattern = "EEE MMM dd HH:mm:ss zzz yyyy"; // Thu Nov 30 16:34:55 CST 2017
+	//private String isotime_pattern = "EEE MMM dd HH:mm:ss yyyy";
 
 	private Pattern p;
 	private Matcher m;
@@ -44,9 +44,8 @@ public class DateTime_function {
 	LocalDate WeekendDate;
 
 	// private String data_spec_str = "星期五 十二月 01 12:17:04 TST 2017";
-	//private String data_spec_str = "Tue Jul 24 14:38:50 CST 2018";
-	//private String data_spec_str = "Sat Dec  9 00:36:17 2017";
-	private String data_spec_str = "Sat Dec 09 13:50:34 2017";
+	private String data_spec_str = "Tue Jul 24 14:38:50 CST 2018";
+	//private String data_spec_str = "Sat Dec 09 13:50:34 2017";
 	
 	public DateTime_function() throws Exception {
 		// time to string
@@ -91,9 +90,6 @@ public class DateTime_function {
 		// MonthRange(6);
 		// WeekRange (based on specific date)
 		// WeekRange_basedonSpecificDate("20190624", 10);
-
-		// Date calculation
-		addDate();
 		
 		// DateRange
 		// int daysgap2 = getDayLength("20181215", "20181216");
@@ -102,9 +98,9 @@ public class DateTime_function {
 		// Before Date
 		// String todayStr = "20190523";
 		// // This week
-		// String thisweekStartDate = getBeforeDateStrType(todayStr, 6);
-		// String thisweekEndDate = todayStr;
-		// System.out.println(thisweekStartDate+" "+thisweekEndDate);
+		//String thisweekStartDate = getBeforeDateStrType(todayStr, 6);
+		//String thisweekEndDate = todayStr;
+		//System.out.println(thisweekStartDate+" "+thisweekEndDate);
 		// // Last week
 		// String lastweekStartDate = getBeforeDateStrType(thisweekStartDate, 7);
 		// String lastweekEndDate = getBeforeDateStrType(thisweekStartDate, 1);
@@ -126,6 +122,7 @@ public class DateTime_function {
 		// AD to TW
 		//convertTWDate("2018/07/13");
 		
+		getBeforeDate("1080618", 3);
 	}
 
 	private void FormatTranslation() throws Exception {
@@ -245,16 +242,6 @@ public class DateTime_function {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(basic_pattern, Locale.TAIWAN);
 		WeekstartDate = LocalDate.parse(WeekstartDate_str, formatter);
 		WeekendDate = LocalDate.parse(WeekendDate_str, formatter);
-	}
-
-	private void addDate()
-	{
-		Calendar myDate = Calendar.getInstance();
-		Date today = Calendar.getInstance().getTime();
-		myDate.add(Calendar.DATE, 3);
-		String afteradd = df.format(myDate.getTime());
-		System.out.println(today);
-		System.out.println(afteradd);
 	}
 	
 	private void Today() {
@@ -425,7 +412,8 @@ public class DateTime_function {
 		cal.setTime(inputDate);
 		int inputDayOfYear = cal.get(Calendar.DAY_OF_YEAR);
 		cal.set(Calendar.DAY_OF_YEAR, inputDayOfYear - beforeDays);
-
+		System.out.println(cal.getTime().toString());
+		
 		return cal.getTime();
 	}
 
