@@ -1,0 +1,122 @@
+[
+  {
+    "info": [
+      {
+        "originalId": "5cef52390274390001929c80",
+        "verb": "pause",
+        "timeAt": 0,
+        "stored": "2019-05-30T03:47:05.790+0000"
+      },
+      {
+        "originalId": "5cef52390274390001929c81",
+        "verb": "initialplay",
+        "timeAt": 0,
+        "stored": "2019-05-30T03:47:05.791+0000"
+      },
+      {
+        "originalId": "5cef523a0274390001929c83",
+        "verb": "play",
+        "timeAt": 0.012520584277808666,
+        "stored": "2019-05-30T03:47:06.466+0000"
+      },
+      {
+        "originalId": "5cef524c0274390001929c86",
+        "verb": "initialplay",
+        "timeAt": 0,
+        "stored": "2019-05-30T03:47:24.440+0000"
+      },
+      {
+        "originalId": "5cef524c0274390001929c87",
+        "verb": "pause",
+        "timeAt": 0,
+        "stored": "2019-05-30T03:47:24.440+0000"
+      },
+      {
+        "originalId": "5cef524d0274390001929c89",
+        "verb": "play",
+        "timeAt": 4.001200199127197,
+        "stored": "2019-05-30T03:47:25.065+0000"
+      }
+    ],
+    "userId": "5b9238a94d795d1940403aa7",
+    "courseId": "5bbc67522c5164419094476d"
+  },
+  {
+    "info": [
+      {
+        "originalId": "5cedf40a02743900014aabf5",
+        "verb": "initialplay",
+        "timeAt": 0,
+        "stored": "2019-05-29T02:52:58.689+0000"
+      },
+      {
+        "originalId": "5cedf46102743900014aac06",
+        "verb": "stop",
+        "timeAt": 85.30654907226562,
+        "stored": "2019-05-29T02:54:25.838+0000"
+      },
+      {
+        "originalId": "5cedf8d202743900014aac33",
+        "verb": "initialplay",
+        "timeAt": 0,
+        "stored": "2019-05-29T03:13:22.528+0000"
+      },
+      {
+        "originalId": "5cedf92b02743900014aac36",
+        "verb": "stop",
+        "timeAt": 85.30345916748047,
+        "stored": "2019-05-29T03:14:51.234+0000"
+      }
+    ],
+    "userId": "5b878dae4d795d7844485ebe",
+    "courseId": "5bbc67522c5164419094476d"
+  },
+  {
+    "info": [
+      {
+        "originalId": "5cedea9c02743900014aaa3f",
+        "verb": "initialplay",
+        "timeAt": 0,
+        "stored": "2019-05-29T02:12:44.062+0000"
+      },
+      {
+        "originalId": "5cedeb8402743900014aaa65",
+        "verb": "initialplay",
+        "timeAt": 0,
+        "stored": "2019-05-29T02:16:36.619+0000"
+      },
+      {
+        "originalId": "5cedeb8402743900014aaa66",
+        "verb": "pause",
+        "timeAt": 0,
+        "stored": "2019-05-29T02:16:36.933+0000"
+      },
+      {
+        "originalId": "5cedeb8702743900014aaa68",
+        "verb": "play",
+        "timeAt": 0,
+        "stored": "2019-05-29T02:16:39.046+0000"
+      },
+      {
+        "originalId": "5cedebc002743900014aaa8a",
+        "verb": "initialplay",
+        "timeAt": 0,
+        "stored": "2019-05-29T02:17:36.742+0000"
+      },
+      {
+        "originalId": "5cedebc102743900014aaa8b",
+        "verb": "pause",
+        "timeAt": 0,
+        "stored": "2019-05-29T02:17:37.325+0000"
+      },
+      {
+        "originalId": "5cedebc202743900014aaa8f",
+        "verb": "play",
+        "timeAt": 0,
+        "stored": "2019-05-29T02:17:38.886+0000"
+      }
+    ],
+    "userId": "5c7645ed24aa9a0001370a0b",
+    "courseId": "5bbc67522c5164419094476d"
+  }
+]
