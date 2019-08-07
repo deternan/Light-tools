@@ -21,7 +21,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -122,7 +121,7 @@ public class DateTime_function {
 		// AD to TW
 		//convertTWDate("2018/07/13");
 		
-		getBeforeDate("1080618", 3);
+		//getBeforeDate("20190618", 3);
 	}
 
 	private void FormatTranslation() throws Exception {
@@ -405,7 +404,6 @@ public class DateTime_function {
 	}
 
 	private Date getBeforeDate(String dateString, int beforeDays) throws ParseException {
-
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 		Date inputDate = dateFormat.parse(dateString);
 		Calendar cal = Calendar.getInstance();
@@ -416,7 +414,7 @@ public class DateTime_function {
 		
 		return cal.getTime();
 	}
-
+	
 	private String getBeforeDateStrType(String dateString, int beforeDays) throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
