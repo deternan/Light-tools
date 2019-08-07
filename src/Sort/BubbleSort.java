@@ -2,7 +2,7 @@ package Sort;
 
 public class BubbleSort 
 {
-
+	
 	public BubbleSort(double[] input)
 	{
 		int lenD = input.length;
@@ -23,6 +23,15 @@ public class BubbleSort
 		    input[i] = input[j];
 		    input[j] = tmp;		   
 		}
+		
+		for(int i=0;i<input.length;i++) {
+			System.out.println(input[i]);
+		}
+	}
+	
+	public static void main(String args[]) {
+		double[] input = {1,5,4,20,19,0,3};
+		BubbleSort bs = new BubbleSort(input);
 	}
 	
 }
