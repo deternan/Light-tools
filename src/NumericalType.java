@@ -12,14 +12,24 @@
 public class NumericalType 
 {
 
-	long thisweekInstructorCount = 1;
-	long lastweekInstructorCount = 8;
+	long thisweekInstructorCount = 3;
+	long lastweekInstructorCount = 1;
 	
 	public NumericalType()
 	{
 		double differencePercentageInstructors;
 		
-		differencePercentageInstructors = (double)(thisweekInstructorCount - lastweekInstructorCount) / (double)lastweekInstructorCount;
+		if ((lastweekInstructorCount == 0f) && (thisweekInstructorCount > 0f)) {
+			differencePercentageInstructors = 1.0;
+		}else if((lastweekInstructorCount!= 0f) && (thisweekInstructorCount == 0f)) {
+			differencePercentageInstructors = 0;
+		}else if ((lastweekInstructorCount == 0f) && (thisweekInstructorCount == 0f)){
+			differencePercentageInstructors = 0;
+		}else {
+			differencePercentageInstructors = (double)(thisweekInstructorCount - lastweekInstructorCount) / (double)lastweekInstructorCount;
+		}
+		
+		
 		System.out.println(differencePercentageInstructors);
 	}
 	
