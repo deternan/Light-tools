@@ -1,4 +1,4 @@
-package Text_related;
+
 
 /*
  * Chinese_Split
