@@ -1,4 +1,4 @@
-package Text_related.Stanford;
+package Stanford;
 
 /*
  * Chinese character Segmentation 
@@ -38,7 +38,7 @@ import edu.stanford.nlp.ling.CoreLabel;
 public class Chinese_Seg {
 
 //  private static final String basedir = System.getProperty("SegDemo", "data");
-	private static final String basedir = "";	// data path
+	private static final String basedir = "/Users/phelps/Documents/github/Light-tools/data/stanford-word-segmenter/";	// data path
 	
 	static List<String> segmented;
 	CRFClassifier<CoreLabel> segmenter;
@@ -55,7 +55,7 @@ public class Chinese_Seg {
 	    // props.setProperty("NormalizationTable", "data/norm.simp.utf8");
 	    // props.setProperty("normTableEncoding", "UTF-8");
 	    
-	    props.setProperty("serDictionary", basedir + "/dict-chris6.ser.gz");
+	    props.setProperty("serDictionary", basedir + "dict-chris6.ser.gz");
 //	    if (args.length > 0) {
 //	      props.setProperty("testFile", args[0]);
 //	    }
@@ -63,7 +63,7 @@ public class Chinese_Seg {
 	    props.setProperty("sighanPostProcessing", "true");
 
 	    segmenter = new CRFClassifier<>(props);
-	    segmenter.loadClassifierNoExceptions(basedir + "/ctb.gz", props);
+	    segmenter.loadClassifierNoExceptions(basedir + "ctb.gz", props);
 //	    for (String filename : args) {
 //	      segmenter.classifyAndWriteAnswers(filename);
 //	    }
