@@ -12,6 +12,11 @@ package Stanford;
  * 
  */
 
+/*
+ * JAR
+ * stanford-corenlp-3.4.1.jar
+ * 
+ */
 
 import java.io.*;
 import java.util.List;
@@ -38,7 +43,7 @@ import edu.stanford.nlp.ling.CoreLabel;
 public class Chinese_Seg {
 
 //  private static final String basedir = System.getProperty("SegDemo", "data");
-	private static final String basedir = "/Users/phelps/Documents/github/Light-tools/data/stanford-word-segmenter/";	// data path
+	private static final String basedir = "/Users/phelps/Documents/github/Light-tools/data/stanford-word-segmenter/data/";	// data path
 	
 	static List<String> segmented;
 	CRFClassifier<CoreLabel> segmenter;

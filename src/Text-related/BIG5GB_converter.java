@@ -1,4 +1,3 @@
-package Text_related;
 
 /*
  * Traditional Chinese and Simplified Chinese Converter 
