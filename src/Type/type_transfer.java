@@ -1,4 +1,4 @@
-package Java;
+package Type;
 
 /*
  * eTube video content Search
