@@ -105,7 +105,7 @@ public class Time_difference
 		return can_temp;
 	}
 	
-	private void Day_comparision(Date data_now, Date data_comparison) throws Exception
+	private void Day_comparison(Date data_now, Date data_comparison) throws Exception
 	{
 		//Date date_format_now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(data_now);
 		//Date date_format_comparison = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(data_comparison);
