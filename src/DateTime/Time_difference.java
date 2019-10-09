@@ -2,7 +2,7 @@ package DateTime;
 
 /*
  * version: June 16, 2017 02:26 PM
- * Last revision: December 15, 2017 11:49 AM
+ * Last revision: October 09, 2019 12:49 AM
  * 
  * Author : Chao-Hsuan Ke
  * Institute: Delta Research Center
@@ -105,7 +105,7 @@ public class Time_difference
 		return can_temp;
 	}
 	
-	private void Day_compasion(Date data_now, Date data_comparison) throws Exception
+	private void Day_comparision(Date data_now, Date data_comparison) throws Exception
 	{
 		//Date date_format_now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(data_now);
 		//Date date_format_comparison = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(data_comparison);
