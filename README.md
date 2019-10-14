@@ -1,7 +1,5 @@
-Each function was implemented by both programming languages 
+Each function was implemented by Java programming language 
 
-1. Java
-2. Python  
 
 ## Application
  1. subtitle
@@ -12,11 +10,19 @@ Each function was implemented by both programming languages
 ## html_download
 
 ## Json
+- Array to Json
+- JSON parser
+- Json generation
+- Json to String (Json parser)
+- Transfer XML to JSON
+
+## Mathematic
+- data normalization
 
 ## Lucene
-	- Lucene_Index_count
-	- Lucene_Index_Delete
-	- Lucene_Search
+- Lucene_Index_count
+- Lucene_Index_Delete
+- Lucene_Search
 
 ## MongoDB
 
@@ -33,32 +39,3 @@ Each function was implemented by both programming languages
 - /taggers/english-left3words-distsim.tagger.props <br>
 
 
----
-
-Auto_download
-
-BubbleSort
-
-GoogleTranslate API
-
-Random_generator
-
-Regular_Expression
-
-RemoveDuplicates
-
-RemoveDuplicates_Hash_vector
-
-RemoveDuplicates_list
-
-RemoveDuplicates_vector
-
-Sort Array
-
-Sort vector
-
-Time_difference
-
-Time_difference (ISOTime)
-
-get data path
