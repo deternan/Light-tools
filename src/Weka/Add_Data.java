@@ -1,19 +1,5 @@
 package Weka;
 
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.Random;
-
-import weka.core.Attribute;
-import weka.core.DenseInstance;
-import weka.core.FastVector;
-import weka.core.Instance;
-import weka.filters.unsupervised.attribute.Add;
-
 /*
  * Generated arff dataset
  * 
@@ -31,6 +17,20 @@ import weka.filters.unsupervised.attribute.Add;
  * weka-dev-3.7.6.jar
  * 
  */
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Random;
+
+import weka.core.Attribute;
+import weka.core.DenseInstance;
+import weka.core.FastVector;
+import weka.core.Instance;
+import weka.filters.unsupervised.attribute.Add;
 
 public class Add_Data 
 {
