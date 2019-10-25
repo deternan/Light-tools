@@ -19,8 +19,7 @@ public class Readfoler
 	private String dirPath = "";
 	
 	public Readfoler()
-	{
-		
+	{		
 		File dir = new File(dirPath);
 		String[] files = dir.list();
 		if (files.length == 0) {
