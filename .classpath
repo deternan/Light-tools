@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="Lucene/web/|html/|MongoDB/|YouTube/src/main/java/|Text-related/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/html"/>
+	<classpathentry kind="src" path="src/Lucene/web"/>
+	<classpathentry kind="src" path="src/MongoDB"/>
+	<classpathentry kind="src" path="src/Text-related"/>
+	<classpathentry kind="src" path="src/YouTube/src/main/java"/>
+	<classpathentry kind="lib" path="libs/apache-commons.jar"/>
+	<classpathentry kind="lib" path="libs/bson-3.4.2.jar"/>
+	<classpathentry kind="lib" path="libs/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-4.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="libs/java-json.jar"/>
+	<classpathentry kind="lib" path="libs/jsoup-1.10.2.jar"/>
+	<classpathentry kind="lib" path="libs/mongodb-driver-3.4.2.jar"/>
+	<classpathentry kind="lib" path="libs/mongodb-driver-core-3.4.2.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-api-1.7.12.jar"/>
+	<classpathentry kind="lib" path="libs/ZHConverter.jar"/>
+	<classpathentry kind="lib" path="D:/JAR/gson-2.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
