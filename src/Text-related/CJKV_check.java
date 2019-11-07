@@ -15,8 +15,7 @@ public class CJKV_check
 	public CJKV_check()
 	{
 		boolean check;
-		check = input_str.codePoints().anyMatch(codepoint ->
-	            Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN);
+		check = input_str.codePoints().anyMatch(codepoint -> Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN);
 		
 		System.out.println(check);
 	}
