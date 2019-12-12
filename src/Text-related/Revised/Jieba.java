@@ -21,9 +21,9 @@ import java.io.OutputStreamWriter;
 
 public class Jieba 
 {
-	private String orginalPath = "D:\\Phelps\\GitHub\\Song_recommendation\\jieba\\extra_dict\\";
+	private String orginalPath = "";
 	private String orginalFile = "dict.txt.all.big";
-	private String newPath = "D:\\Phelps\\GitHub\\Song_recommendation\\jieba\\extra_dict\\dict.txt.tra.big";
+	private String newPath = "";
 	private String newFile = "dict.txt.tra.big";
 	
 	// Read
