@@ -15,7 +15,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class DatetoISODate 
@@ -24,7 +23,7 @@ public class DatetoISODate
 	
 	public DatetoISODate() throws Exception
 	{
-		Date utilDateSetting = SettingDateString(2018,6,01);
+		Date utilDateSetting = SettingDateString(2018,06,01);
 		System.out.println(utilDateSetting);
 		
 		//2018-07-09 15:37:25.440+08:00
@@ -38,8 +37,8 @@ public class DatetoISODate
 		myCal.set(Calendar.YEAR, year);
 		myCal.set(Calendar.MONTH, month-1);
 		myCal.set(Calendar.DATE, day);
-		myCal.set(Calendar.HOUR, 0 - 4);
-		//myCal.set(Calendar.HOUR_OF_DAY, 0);
+		//myCal.set(Calendar.HOUR, 0 - 4);
+		myCal.set(Calendar.HOUR_OF_DAY, 0);
 		myCal.set(Calendar.MINUTE, 0);
 		myCal.set(Calendar.SECOND, 0);
 		
