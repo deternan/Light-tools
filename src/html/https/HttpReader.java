@@ -14,14 +14,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
-/**
- * 以http方式讀取html資料
- * 並且可先取得表頭，準備讀取網頁資料
- * @author Ray
- *
- */
-
 public class HttpReader extends HtmlReader{
     public String root;
     public String subUrl;
@@ -40,43 +32,28 @@ public class HttpReader extends HtmlReader{
         QueryHash = new HashMap();
     }
 
-    /**
-     *
-     * @param urlPath        url
-     * @param cookie        cookie
-     * @param isRedirect    設定目前的HttpURLConnection物件是否重新導向
-     * @return
-     * @throws IOException
-     */
+     
     public InputStream getInputStream(String urlPath,String cookie,boolean isRedirect) throws IOException{
         URL url = new URL(urlPath);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestProperty("User-agent","IE/7.0");
         connection.setRequestProperty("Cookie", cookie == null ? "" :cookie);
-        //HttpURLConnection.setFollowRedirects(true);
-        connection.setInstanceFollowRedirects(isRedirect);//設定目前的HttpURLConnection物件是否重新導向
+       
+        connection.setInstanceFollowRedirects(isRedirect);
 
         connection.connect();
         headerFields.clear();
         //System.out.println(connection.getHeaderFields());
         if(connection.getHeaderFields() != null){
-            headerFields.putAll(connection.getHeaderFields());//取得回傳的標頭資料
+            headerFields.putAll(connection.getHeaderFields());
         }
-        //System.out.println("headerFields===>" + headerFields);
+        
         if("gzip".equalsIgnoreCase( connection.getContentEncoding())){
             return new GZIPInputStream(connection.getInputStream());
         }
         return connection.getInputStream();
     }
 
-    /**
-     * 取得開啟網頁連線後的讀取網頁資料串流,回傳的標頭資料會存在 headerFields
-     * @param url        要連結的網址
-     * @param data        post要串後面的資料
-     * @param cookie    要送過去的cookie，null:表示不設定cookie
-     * @param referer    設定目前網站連結由哪一頁(網址)發送的
-     * @param post        true : 用post方式 開網頁 | false: 用get方式開網頁
-     */
     public InputStream openURL(String url,String data,String cookie,String referer,boolean post,boolean isRedirect) throws IOException{
         URL tmpurl = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) tmpurl.openConnection();
@@ -104,15 +81,13 @@ public class HttpReader extends HtmlReader{
 
         if(post){
             connection.setRequestProperty("Content-Type", getRequestProperty("Content-Type"));
-            //此行需要註解掉，否則會因為我方設定的post資料過長，後端不接收而丟ioexception
-            //connection.setRequestProperty("Content-Length", String.valueOf(data.getBytes().length));
+            
             DataOutputStream dos = new DataOutputStream(connection.getOutputStream());
             //String mStr = new String(data.getBytes(charSet), charSet);
             dos.write(data.getBytes(charSet));//2012/12/15 修正傳送資料未加上byte格式轉換
             dos.flush();
-            //dos.writeBytes(mStr);
+            
             dos.close();
-            //System.out.println("headerFields====>" + headerFields);
         }
         headerFields.clear();
         
@@ -120,6 +95,7 @@ public class HttpReader extends HtmlReader{
         if("gzip".equalsIgnoreCase( connection.getContentEncoding())){
             return new GZIPInputStream(connection.getInputStream());
         }
+		
         return connection.getInputStream();
     }
     
