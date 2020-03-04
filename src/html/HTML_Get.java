@@ -3,19 +3,31 @@
  * https parser
  * 
  * version: March 04, 2020 01:02 AM
- * Last revision: March 04, 2020 01:12 AM
+ * Last revision: March 04, 2020 10:58 PM
  * 
  * Author : Chao-Hsuan Ke
  * Email: phelpske.dev at gmail dot com
  */
 
-public class TestHTMLParser 
-{
-	private String URL = "http://newsapi.org/v2/everything?q=bitcoin&from=2020-02-03&sortBy=publishedAt&apiKey=";
+/*
+ * Reference
+ * 
+ * https://newsapi.org/docs/endpoints/top-headlines
+ */
+
+public class HTML_Get 
+{	
+	private String basedURL = "http://newsapi.org/v2/top-headlines?";
 	
+	private String country = "tw";
+	private String category = "health";	
+	private String apiKey = "";
+	private String URL = "";
 	
-	public TestHTMLParser()
+	public HTML_Get()
 	{
+		URL = basedURL + "country=" + country + "&category=" + category + "&apiKey=" + apiKey;
+		
 		try {
 	        String sCurrentLine;
 	        String sTotalString;
@@ -27,13 +39,12 @@ public class TestHTMLParser
 	        l_connection.connect();
 	        l_urlStream = l_connection.getInputStream();
 	        java.io.BufferedReader l_reader = new java.io.BufferedReader(new java.io.InputStreamReader(l_urlStream));
-	        while ((sCurrentLine = l_reader.readLine()) != null) {
-	          sTotalString = sCurrentLine; //"/r/n";
+	        
+	        while ((sCurrentLine = l_reader.readLine()) != null) 
+	        {
+	          sTotalString = sCurrentLine; 
 	          System.out.println(sTotalString);
 	        }
-	        
-	        //String testText = extractText(sTotalString);
-	        //System.out.println( testText );
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -45,7 +56,7 @@ public class TestHTMLParser
   public static void main(String[] args) throws Exception 
   {
     // test5(“http://www.google.com”);
-	  TestHTMLParser test = new TestHTMLParser();
+	  HTML_Get test = new HTML_Get();
   }
   
 }
