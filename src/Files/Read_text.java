@@ -7,8 +7,6 @@ package Files;
  * Last revision: September, 2018 11:34 AM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
 
