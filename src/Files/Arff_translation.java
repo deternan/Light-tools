@@ -1,3 +1,13 @@
+/*
+ * Translate data to arff
+ * 
+ * version: November 08, 2017 11:53 AM
+ * Last revision: November 08, 2017 03:00 PM
+ * 
+ * Author : Chao-Hsuan Ke
+ * 
+ */
+
 package Files;
 
 import java.io.BufferedReader;
@@ -11,17 +21,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashSet;
 import java.util.Vector;
 
-/*
- * Translate data to arff
- * 
- * version: November 08, 2017 11:53 AM
- * Last revision: November 08, 2017 03:00 PM
- * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
- * 
- */
 
 public class Arff_translation 
 {
