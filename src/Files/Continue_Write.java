@@ -1,7 +1,3 @@
-package Files;
-
-import java.io.FileWriter;
-
 /*
  * Continued output file (data will be written at the end of file)
  * 
@@ -9,10 +5,12 @@ import java.io.FileWriter;
  * Last revision: August 14, 2017 11:27 AM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
+
+package Files;
+
+import java.io.FileWriter;
 
 public class Continue_Write 
 {
