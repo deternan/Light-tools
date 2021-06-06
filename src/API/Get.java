@@ -1,3 +1,14 @@
+
+/*
+ * Get API
+ * 
+ * version: October 17, 2017 11:13 AM
+ * Last revision: October 17, 2017 01:18 PM
+ * 
+ * Author : Chao-Hsuan Ke
+ * 
+ */
+
 package API;
 
 import java.io.BufferedReader;
@@ -18,17 +29,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/*
- * Get API
- * 
- * version: October 17, 2017 11:13 AM
- * Last revision: October 17, 2017 01:18 PM
- * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
- * 
- */
 
 /*
  * JAR
