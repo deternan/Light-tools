@@ -1,3 +1,13 @@
+/*
+ * http POST
+ * 
+ * version: October 20, 2017 10:06 AM
+ * Last revision: November 14, 2017 11:13 AM
+ * 
+ * Author : Chao-Hsuan Ke
+ * 
+ */
+
 package API;
 
 import java.io.BufferedReader;
@@ -9,17 +19,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-/*
- * http POST
- * 
- * version: October 20, 2017 10:06 AM
- * Last revision: November 14, 2017 11:13 AM
- * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
- * 
- */
 
 /*
  * JAR
