@@ -1,5 +1,3 @@
-package Algorithms;
-
 /*
  * Bobble Sort (Array)
  * 
@@ -7,10 +5,10 @@ package Algorithms;
  * Last revision: January 25, 2018 06:39 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
+
+package Algorithms;
 
 public class BubbleSort_Array 
 {
