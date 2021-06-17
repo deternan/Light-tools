@@ -1,9 +1,3 @@
-package html.web;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
 /*
  * html parser 
  * 
@@ -11,9 +5,13 @@ import org.jsoup.select.Elements;
  * Last revision: December 13, 2017 07:00 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  */
+
+package html.web;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 /*
  * JAR
