@@ -1,3 +1,13 @@
+/*
+ * Segmentation by Jieba & Remove stopwords
+ * 
+ * version: November 06, 2017 02:12 PM
+ * Last revision: November 06, 2017 05:16 PM
+ * 
+ * Author : Chao-Hsuan Ke
+ * 
+ */
+
 package Application;
 
 import java.io.BufferedReader;
@@ -14,18 +24,6 @@ import org.ansj.splitWord.analysis.ToAnalysis;
 import Application.jieba.JiebaSegmenter;
 import Application.jieba.JiebaSegmenter.SegMode;
 import TF_IDF.Parameters;
-
-/*
- * Segmentation by Jieba & Remove stopwords
- * 
- * version: November 06, 2017 02:12 PM
- * Last revision: November 06, 2017 05:16 PM
- * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
- * 
- */
 
 
 public class Jieba_segmentation extends Parameters
