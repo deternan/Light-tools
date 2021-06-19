@@ -1,19 +1,17 @@
-package Calculation;
-
-import cern.colt.matrix.DoubleMatrix1D;
-import cern.colt.matrix.impl.DenseDoubleMatrix1D;
-
 /*
  * cosine similarity
  * 
  * version: January 03, 2018 11:42 AM
  * Last revision: January 03, 2018 11:42 AM
  * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
+ * Author : Chao-Hsuan Ke 
  * 
  */
+
+package Calculation;
+
+import cern.colt.matrix.DoubleMatrix1D;
+import cern.colt.matrix.impl.DenseDoubleMatrix1D;
 
 /*
  * JAR
