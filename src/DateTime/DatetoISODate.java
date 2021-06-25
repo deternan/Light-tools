@@ -1,5 +1,3 @@
-package DateTime;
-
 /*
  * Date to ISODate
  * 
@@ -7,9 +5,9 @@ package DateTime;
  * Last revision: December 05, 2018 04:15 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  */
+
+package DateTime;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
