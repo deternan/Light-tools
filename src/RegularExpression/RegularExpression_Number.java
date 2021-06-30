@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
  * Last revision: June 02, 2018 01:35 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
 
