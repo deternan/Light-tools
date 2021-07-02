@@ -1,15 +1,14 @@
-package DateTime;
-
 /*
  * Show DataTime
  * version: April 16, 2019 11:54 AM
  * Last revision: August 02, 2019 01:36 PM	
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
+
+
+package DateTime;
 
 import java.text.DateFormat;
 import java.text.ParseException;
