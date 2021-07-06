@@ -1,16 +1,14 @@
-package DateTime;
-
 /*
  * Time. String to Numerical 
  * 
  * version: June 05, 2018 09:14 AM
  * Last revision: June 05, 2018 09:14 AM
  * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
+ * Author : Chao-Hsuan Ke 
  * 
  */
+
+package DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
