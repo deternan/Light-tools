@@ -1,5 +1,3 @@
-package DateTime;
-
 /*
  * Unit transfer (sec to hour:min:sec)
  * 
@@ -7,9 +5,9 @@ package DateTime;
  * Last revision: January 11, 2019 05:42 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  */
+
+package DateTime;
 
 public class UnitTransfer {
 
