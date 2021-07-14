@@ -1,16 +1,14 @@
-package DateTime;
-
 /*
  * version: June 16, 2017 02:26 PM
  * Last revision: October 09, 2019 12:49 AM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  * Timestamp	https://docs.oracle.com/javase/8/docs/api/java/sql/Timestamp.html
  * 
  */
+
+package DateTime;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
