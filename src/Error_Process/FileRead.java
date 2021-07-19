@@ -1,3 +1,12 @@
+/*
+ * Error record (file read)
+ * 
+ * version: October 18, 2017 10:55 AM
+ * Last revision: October 18, 2017 10:55 AM
+ * 
+ * Author : Chao-Hsuan Ke 
+ */
+
 package Error_Process;
 
 import java.io.FileWriter;
@@ -5,17 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-/*
- * Error record (file read)
- * 
- * version: October 18, 2017 10:55 AM
- * Last revision: October 18, 2017 10:55 AM
- * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
- */
 
 public class FileRead 
 {
