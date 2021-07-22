@@ -1,0 +1,55 @@
+package Patents;
+
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class Google_Patents 
+{
+	private String url = "https://patents.google.com/patent/US10586156B2/en?q=knowledge+graph&oq=knowledge+graph";
+	
+	public Google_Patents() throws Exception
+	{
+		Connection.Response response = Jsoup.connect(url).execute();
+        String body = response.body();        
+        Document data =  Jsoup.parse(body);       
+        
+        // li
+//        Elements tds = data.select("dt");                
+//        for(Element td : tds)
+//        {
+//            System.out.println(td.text());
+//        }
+        
+        // meta
+//        Elements price = data.getElementsByClass("mata");
+//        for(Element tr : price) {        	
+//        	System.out.println(tr.text());
+//        }
+
+        // Meta
+        Elements metaTags = data.getElementsByTag("meta");
+        String content;
+        for (Element metaTag : metaTags) {
+            content = metaTag.attr("content");
+            if(content.contains(".png")) {
+            	System.out.println(content);
+            }
+            
+        }
+        
+	}
+	
+	public static void main( String[] args )
+	{
+		try {
+			Google_Patents GP = new Google_Patents();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+}
