@@ -9,8 +9,6 @@ import java.io.File;
  * Last revision: February 07, 2018 02:31 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
 
