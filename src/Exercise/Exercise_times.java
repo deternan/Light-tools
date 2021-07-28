@@ -6,8 +6,6 @@ package Exercise;
  * Last revision: September 25, 2017 04:07 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
 
