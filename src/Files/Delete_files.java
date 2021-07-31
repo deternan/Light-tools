@@ -1,14 +1,12 @@
-package Files;
-
 /*
  * version: August 25, 2018 04:53 PM
  * Last revision: May 07, 2019 10:28 AM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
+
+package Files;
 
 import java.io.File;
 import java.io.FileNotFoundException;
