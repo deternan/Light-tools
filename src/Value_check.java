@@ -4,8 +4,6 @@
  * Last revision: July 28, 2018 12:11 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
 
