@@ -1,5 +1,16 @@
 package Files;
 
+
+/*
+ * File content combination
+ * 
+ * version: November 14, 2017 02:49 PM
+ * Last revision: May 07, 2019 10:27 AM
+ * 
+ * Author : Chao-Hsuan Ke
+ * 
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,18 +21,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
-
-/*
- * File content combination
- * 
- * version: November 14, 2017 02:49 PM
- * Last revision: May 07, 2019 10:27 AM
- * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
- * 
- */
 
 public class File_Combination 
 {
