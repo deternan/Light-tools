@@ -1,6 +1,4 @@
-package Files;
 
-import java.io.File;
 
 /*
  * Folder & File check
@@ -9,10 +7,12 @@ import java.io.File;
  * Last revision: December 19, 2017 11:48 AM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
+
+package Files;
+
+import java.io.File;
 
 public class Folder_File_check 
 {
