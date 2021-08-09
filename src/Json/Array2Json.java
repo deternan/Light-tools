@@ -1,16 +1,14 @@
-package Json;
-
 /*
  * Updated video tag 
  * 
  * version: April 27, 2018 06:20 PM
  * Last revision: April 27, 2018 06:20 PM
  * 
- * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
+ * Author : Chao-Hsuan Ke 
  * 
  */
+
+package Json;
 
 import java.util.Vector;
 
