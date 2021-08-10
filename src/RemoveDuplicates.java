@@ -5,9 +5,7 @@
  * Version: April 10, 2017 03:32 PM
  * Last revision: April 10, 2017 03:32 PM 
  * 
- * Author : Chao-Hsuan Ke (Phelps Ke)
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc., Taiwan
+ * Author : Chao-Hsuan Ke
  *  
  */
 
