@@ -8,8 +8,6 @@ import java.util.Vector;
  * Last revision: October 24, 2017 11:33 AM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
 
