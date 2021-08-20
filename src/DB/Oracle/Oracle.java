@@ -172,6 +172,32 @@ public class Oracle
 		//System.out.println("count "+count);
 	}
 	
+	private void Query_by_DATE() throws SQLException
+	{
+		connection = getConnection();
+		
+		String sql = "SELECT * FROM xxxx.xxxxE WHERE to_char(xxxx.xxxx,'yyyy-mm-dd')='2021-05-12' AND WEIGHT='120'";
+				
+		String texture;
+		double weight;
+		String title;
+		Timestamp time;
+		Timestamp createtime;
+		
+		pstm = connection.prepareStatement(sql);
+		rs = pstm.executeQuery();
+		
+		while (rs.next()) 
+		{
+			texture = rs.getString("TEXTURE");
+			weight = rs.getDouble("WEIGHT");
+			title = rs.getString("TITLE");
+			time = rs.getTimestamp("DATA_DATE");
+			createtime = rs.getTimestamp("CREATE_DATE");			
+			System.out.println(title+"	"+texture+"	"+weight+"	"+time+"	"+createtime);
+		}		
+	}
+	
 	public void AddData(
 			String title, 
 			String sub_titile, 
