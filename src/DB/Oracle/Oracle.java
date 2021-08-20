@@ -50,8 +50,7 @@ public class Oracle
 	
 	public Oracle() throws SQLException
 	{
-		// Connection check
-			//Connetion();
+		// Connection check		
 		// DATABASE Query
 		
 		Timestamp time= new Timestamp(System.currentTimeMillis());//獲取系統當前時間 
@@ -109,6 +108,70 @@ public class Oracle
 		//System.out.println("count "+count);
 	}
 	
+	private void Query_All() throws SQLException
+	{
+		connection = getConnection();
+				
+		String sql = "SELECT * FROM xxxx.xxxx";
+		
+		int total_count = 0;
+		String texture;
+		double weight;
+		String title;
+		Timestamp time;
+		Timestamp createtime;
+		
+		pstm = connection.prepareStatement(sql);
+		rs = pstm.executeQuery();
+		
+		while (rs.next()) 
+		{
+			texture = rs.getString("TEXTURE");
+			weight = rs.getDouble("WEIGHT");
+			title = rs.getString("TITLE");
+			time = rs.getTimestamp("DATA_DATE");
+			createtime = rs.getTimestamp("CREATE_DATE");
+			
+			System.out.println(title+"	"+texture+"	"+weight+"	"+time+"	"+createtime);
+		}
+		//System.out.println("count "+count);
+	}
+	
+	private void Query_Record(String title_query, double weight_query, Timestamp date_query) throws SQLException
+	{
+		connection = getConnection();
+				
+		//String sql = "SELECT * FROM xxxx.xxxx WHERE (WEIGHT) in ((" +weight_query+ "))";
+		//String sql = "SELECT * FROM xxxx.xxxx WHERE WEIGHT = '" + weight_query + "' AND CREATE_DATE='"+ date_query + "'";
+		String sql = "SELECT * FROM xxxx.xxxx WHERE WEIGHT = '" + weight_query + "'";
+		//String sql = "SELECT * FROM xxxx.xxxx WHERE CREATE_DATE = '" + date_query + "'";
+		//String sql = "SELECT * FROM xxxx.xxxx WHERE CREATE_DATE = to_timestamp('"+date_query+"', 'yyyy-MM-dd HH:mm:ss')" ;
+		
+		
+		System.out.println(sql);
+		int total_count = 0;
+		String texture;
+		double weight;
+		String title;
+		Timestamp time;
+		Timestamp createtime;
+		
+		pstm = connection.prepareStatement(sql);
+		rs = pstm.executeQuery();
+		
+		while (rs.next()) 
+		{
+			texture = rs.getString("TEXTURE");
+			weight = rs.getDouble("WEIGHT");
+			title = rs.getString("TITLE");
+			time = rs.getTimestamp("DATA_DATE");
+			createtime = rs.getTimestamp("CREATE_DATE");
+			
+			System.out.println(title+"	"+texture+"	"+weight+"	"+time+"	"+createtime);
+		}
+		//System.out.println("count "+count);
+	}
+	
 	public void AddData(
 			String title, 
 			String sub_titile, 
@@ -152,6 +215,61 @@ public class Oracle
 			System.out.println("Insert finished");
 	}
 	
+	private void DeleteData(String title_query, double weight_query, Timestamp date_query) throws Exception
+	{
+		connection = getConnection();
+		Statement stmt = connection.createStatement();
+		
+		String sql = "DELETE FROM ECAS_MGR.CA_RAW_MATERIAL_PRICE_OUTSOURCE WHERE WEIGHT = '" + weight_query + "'";		
+		//System.out.println(sql);
+		int total_count = 0;
+		String texture;
+		double weight;
+		String title;
+		Timestamp time;
+		Timestamp createtime;
+				
+		stmt.executeUpdate(sql);		
+		
+		while (rs.next()) 
+		{
+			texture = rs.getString("TEXTURE");
+			weight = rs.getDouble("WEIGHT");
+			title = rs.getString("TITLE");
+			time = rs.getTimestamp("DATA_DATE");
+			createtime = rs.getTimestamp("CREATE_DATE");
+			
+			System.out.println(title+"	"+texture+"	"+weight+"	"+time+"	"+createtime);
+		}
+	}
+	
+	private void DeleteAllData() throws Exception
+	{
+		connection = getConnection();
+		Statement stmt = connection.createStatement();
+		
+		String sql = "DELETE FROM ECAS_MGR.CA_RAW_MATERIAL_PRICE_OUTSOURCE";				
+		int total_count = 0;
+		String texture;
+		double weight;
+		String title;
+		Timestamp time;
+		Timestamp createtime;
+				
+		stmt.executeUpdate(sql);		
+		
+		while (rs.next()) 
+		{
+			texture = rs.getString("TEXTURE");
+			weight = rs.getDouble("WEIGHT");
+			title = rs.getString("TITLE");
+			time = rs.getTimestamp("DATA_DATE");
+			createtime = rs.getTimestamp("CREATE_DATE");
+			
+			System.out.println(title+"	"+texture+"	"+weight+"	"+time+"	"+createtime);
+		}
+	}
+	
 	private Connection getConnection() 
 	{
 		try {
@@ -164,16 +282,6 @@ public class Oracle
 			throw new RuntimeException("get connection error!", e);
 		}
 		return connection;
-	}
-	
-	
-	
-	private void Connetion() throws SQLException
-	{		
-		Connection conn = DriverManager.getConnection(dbURL);
-		if (conn != null) {
-		    System.out.println("Connected");
-		}
 	}
 	
 	private void getTableNameList() throws SQLException 
