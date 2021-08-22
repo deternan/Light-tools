@@ -7,8 +7,6 @@ package Mail;
  * Last revision: November 13, 2017 01:24 PM
  * 
  * Author : Chao-Hsuan Ke
- * Institute: Delta Research Center
- * Company : Delta Electronics Inc. (Taiwan)
  * 
  */
 
